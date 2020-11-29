@@ -56,7 +56,9 @@ val EmojiContainer = react.componentWithChildren { props: EmojiContainerProps, c
     var count by useState(3)
 
     useEffect(count) {
-        window.setTimeout({ count += 1 }, 2000)
+        val timerId = window.setTimeout({ count += 1 }, 2000)
+
+        cleanup { window.clearTimeout(timerId) }
     }
 
     h1 { +"Your emoji, $count times 🎉" }
