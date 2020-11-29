@@ -17,9 +17,9 @@ public external interface RRouteOptions {
 @Suppress("FunctionName")
 public inline fun RRouteOptions(
 	path: RRoutePathFilter,
-	exact: Boolean = false,
-	sensitive: Boolean = false,
-	strict: Boolean = false,
+	exact: Boolean = true,
+	sensitive: Boolean = true,
+	strict: Boolean = true,
 ): RRouteOptions =
 	jsObject {
 		it.exact = exact
@@ -32,9 +32,9 @@ public inline fun RRouteOptions(
 @Suppress("FunctionName")
 public inline fun RRouteOptions(
 	path: String,
-	exact: Boolean = false,
-	sensitive: Boolean = false,
-	strict: Boolean = false,
+	exact: Boolean = true,
+	sensitive: Boolean = true,
+	strict: Boolean = true,
 ): RRouteOptions =
 	RRouteOptions(
 		path = RRoutePathFilter(path),
