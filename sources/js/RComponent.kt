@@ -1,6 +1,5 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-// FIXME memo!
 
 package io.fluidsonic.react
 
@@ -37,3 +36,23 @@ internal inline var RComponent<*>.displayName: String?
 	set(value) {
 		asDynamic().displayName = value
 	}
+
+
+public inline fun <Props : Any> RComponent<Props>.memo(): RComponent<Props> =
+	memo { old, new -> old == new }
+
+
+public inline fun <Props : Any> RComponent<Props>.memo(noinline areEqual: (old: Props, new: Props) -> Boolean): RComponent<Props> =
+	asFactory().memo { old, new -> areEqual(old.props, new.props) }.asComponent()
+
+
+@RMemoWithChildren
+public inline fun <Props : Any> RComponent.WithChildren<Props>.memo(): RComponent.WithChildren<Props> =
+	memo { old, new -> old == new }
+
+
+@RMemoWithChildren
+public inline fun <Props : Any> RComponent.WithChildren<Props>.memo(
+	noinline areEqual: (old: Props, new: Props) -> Boolean,
+): RComponent.WithChildren<Props> =
+	asFactory().memo { old, new -> areEqual(old.props, new.props) }.asComponent()

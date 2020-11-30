@@ -38,7 +38,7 @@ internal external fun <Props : RProps> external_lazy(
 @JsName("memo")
 @PublishedApi
 internal external fun <Props : RProps> external_memo(
-	component: RElementFactory<Props>,
+	factory: RElementFactory<Props>,
 	propsAreEqual: (oldProps: Props, newProps: Props) -> Boolean = definedExternally,
 ): RElementFactory<Props>
 

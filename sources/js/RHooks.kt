@@ -66,7 +66,7 @@ public inline fun RHooks.useLayoutEffect(
 	noinline effect: REffectBuilder.() -> Unit,
 ) {
 	useRef(null)
-	useDebugValue("useLayoutEffect() dependency")
+	useDebugValue("useLayoutEffect() dependencies")
 
 	external_useLayoutEffect(buildEffect(effect))
 }
@@ -78,13 +78,29 @@ public inline fun RHooks.useLayoutEffect(
 	noinline effect: REffectBuilder.() -> Unit,
 ) {
 	val ref = useRef<Array<out Any?>>()
-	useDebugValue("useLayoutEffect() dependency")
+	useDebugValue("useLayoutEffect() dependencies")
 
 	val previousDependencies = ref.current
 	if (!dependencies.contentEquals(previousDependencies))
 		ref.current = dependencies
 
 	external_useLayoutEffect(buildEffect(effect), arrayOf(ref.current))
+}
+
+
+@RDsl
+public inline fun <Value> RHooks.useMemo(
+	createValue: () -> Value,
+): Value {
+	val ref = useRef<Any?>(noValue)
+	useDebugValue("useMemo()")
+
+	val current = ref.current
+
+	return when {
+		current === noValue -> createValue().also { ref.current = createValue() }
+		else -> current.unsafeCast<Value>()
+	}
 }
 
 
