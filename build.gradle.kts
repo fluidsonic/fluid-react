@@ -25,7 +25,7 @@ fluidLibraryModule(description = "FIXME") {
 	targets {
 		js(KotlinJsCompilerType.IR) {
 			dependencies {
-				api(npm("react", "~17.0.1"))
+				implementation(npm("react", "~17.0.1"))
 			}
 		}
 	}

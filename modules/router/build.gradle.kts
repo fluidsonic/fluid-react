@@ -9,7 +9,7 @@ fluidLibraryModule(description = "FIXME") {
 			dependencies {
 				api(project(":"))
 
-				api(npm("react-router", "~5.2.0"))
+				implementation(npm("react-router", "~5.2.0"))
 			}
 		}
 	}

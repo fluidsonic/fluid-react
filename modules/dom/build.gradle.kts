@@ -9,7 +9,7 @@ fluidLibraryModule(description = "FIXME") {
 			dependencies {
 				api(project(":"))
 
-				api(npm("react-dom", "~17.0.1"))
+				implementation(npm("react-dom", "~17.0.1"))
 			}
 		}
 	}
