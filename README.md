@@ -16,12 +16,18 @@ Kotlin/JS wrapper for [React](https://reactjs.org/).
 - Lower size and performance overhead.
 - More type safety, esp. around hooks.
 - Props allow `class` instead of just `external interface`.
-- Hook dependencies use `equals()` instead of `===`, don't require and `Array` and don't have be same count for each render.
 - `@DslMarker` colors.
-- Router routes are `exact`, `strict` and `sensitive` by default.
 - **Highly experimental.** IR compiler only. Relies on unofficial compiler behavior.
 - **Work in progress. Please contribute 😃**
-- [Kotlin/JS-optimized CSS library](https://github.com/fluidsonic/fluid-css) with nice API in the works. 
+- [Kotlin/JS-optimized CSS library](https://github.com/fluidsonic/fluid-css) with nice API in the works.
+
+#### Notable differences in behavior
+
+- Components created with `react.component()` are memoized by default unless they have children (`react.componentWithChildren()`).
+- Memoization of components created with `react.component()` or added by `RComponent.memo()` use `equals()` to compare Props.
+  You must ensure that your props implement `equals()` in order to benefit from memoization.
+- Hook dependencies use `equals()` instead of `===`. They don't need to be an `Array` nor is the same amount of dependencies needed for each render.
+- Router routes are `exact`, `strict` and `sensitive` by default.
 
 
 ## Installation
