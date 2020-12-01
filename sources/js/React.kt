@@ -23,40 +23,90 @@ public inline val tags: RTags
 
 @RDsl
 public inline fun React.component(
-	name: String? = null,
 	memo: Boolean = true,
-	noinline render: RBuilder.WithHooks.() -> Unit,
+	crossinline render: RBuilder.WithHooks.() -> Unit,
+): RComponent.Delegate<Unit> =
+	component(name = null, memo = memo, render = render).unsafeCast<RComponent.Delegate<Unit>>()
+
+
+@RDsl
+public inline fun React.component(
+	name: String?,
+	memo: Boolean = true,
+	crossinline render: RBuilder.WithHooks.() -> Unit,
 ): RComponent<Unit> =
-	component<Unit>(name = name, memo = memo) { render() }
+	component(name = name, memo = memo, render = render.unsafeCast<RBuilder.WithHooks.(props: Unit) -> Unit>())
 
 
 @OptIn(RMemoWithChildren::class)
 @RDsl
 public inline fun <Props : Any> React.component(
-	name: String? = null,
 	memo: Boolean = true,
-	noinline render: RBuilder.WithHooks.(props: Props) -> Unit,
-): RComponent<Props> =
-	componentWithChildren<Props>(name = name) { props, _ -> render(props) }
+	crossinline render: RBuilder.WithHooks.(props: Props) -> Unit,
+): RComponent.Delegate<Props> =
+	component(name = null, memo = memo, render = render).unsafeCast<RComponent.Delegate<Props>>()
+
+
+@OptIn(RMemoWithChildren::class)
+@RDsl
+public inline fun <Props : Any> React.component(
+	name: String?,
+	memo: Boolean = true,
+	crossinline render: RBuilder.WithHooks.(props: Props) -> Unit,
+): RComponent<Props> {
+	val componentFunction = { props: RComponentProps<Props> ->
+		element(RElementBuilder().apply { render(props.props) }.buildChildren())
+	}
+
+	return componentFunction.unsafeCast<RComponent<Props>>()
+		.also { component ->
+			if (!isProduction() && name != null)
+				component.displayName = name
+		}
 		.let { if (memo) it.memo() else it }
+}
 
 
 @RDsl
 public inline fun React.componentWithChildren(
-	name: String? = null,
-	noinline render: RBuilder.WithHooks.(children: RChildren?) -> Unit,
-): RComponent.WithChildren<Unit> =
-	componentWithChildren(name) { _, children -> render(children) }
+	crossinline render: RBuilder.WithHooks.(children: RChildren?) -> Unit,
+): RComponent.WithChildren.Delegate<Unit> =
+	componentWithChildren(name = null, render = render).unsafeCast<RComponent.WithChildren.Delegate<Unit>>()
+
+
+@RDsl
+public inline fun React.componentWithChildren(
+	name: String?,
+	crossinline render: RBuilder.WithHooks.(children: RChildren?) -> Unit,
+): RComponent.WithChildren<Unit> {
+	val componentFunction = { props: RComponentProps.WithChildren<Unit> ->
+		element(RElementBuilder().apply { render(props.children) }.buildChildren())
+	}
+
+	return componentFunction.unsafeCast<RComponent.WithChildren<Unit>>()
+		.also { component ->
+			if (!isProduction() && name != null)
+				component.displayName = name
+		}
+}
 
 
 @RDsl
 @Suppress("unused")
 public inline fun <Props : Any> React.componentWithChildren(
-	name: String? = null,
-	noinline render: RBuilder.WithHooks.(props: Props, children: RChildren?) -> Unit,
+	crossinline render: RBuilder.WithHooks.(props: Props, children: RChildren?) -> Unit,
+): RComponent.WithChildren.Delegate<Props> =
+	componentWithChildren(name = null, render = render).unsafeCast<RComponent.WithChildren.Delegate<Props>>()
+
+
+@RDsl
+@Suppress("unused")
+public inline fun <Props : Any> React.componentWithChildren(
+	name: String?,
+	crossinline render: RBuilder.WithHooks.(props: Props, children: RChildren?) -> Unit,
 ): RComponent.WithChildren<Props> {
-	val componentFunction = { props: RComponentProps<Props> ->
-		element(RElementBuilder().apply { render(props.props, props.unsafeCast<RProps.WithChildren>().children) }.buildChildren())
+	val componentFunction = { props: RComponentProps.WithChildren<Props> ->
+		element(RElementBuilder().apply { render(props.props, props.children) }.buildChildren())
 	}
 
 	return componentFunction.unsafeCast<RComponent.WithChildren<Props>>()
@@ -345,15 +395,15 @@ public inline fun <Props : RProps> React.lazy(noinline factory: () -> Promise<RE
 
 @RDsl
 @Suppress("unused")
-public inline fun React.lazyComponent(noinline factory: () -> Promise<RBuilder.() -> Unit>): RComponent<Unit> =
+public inline fun React.lazyComponent(crossinline factory: () -> Promise<RBuilder.() -> Unit>): RComponent<Unit> =
 	lazyComponent<Unit> {
-		factory().then { react.component(render = it) }
+		factory().then { react.component(name = null, render = it) }
 	}
 
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : Any> React.lazyComponent(noinline factory: () -> Promise<RComponent<Props>>): RComponent<Props> =
+public inline fun <Props : Any> React.lazyComponent(crossinline factory: () -> Promise<RComponent<Props>>): RComponent<Props> =
 	lazy {
 		factory().then { content ->
 			RElementFactoryModule(content.asFactory())
@@ -364,7 +414,7 @@ public inline fun <Props : Any> React.lazyComponent(noinline factory: () -> Prom
 @RDsl
 @Suppress("unused")
 public inline fun <Props : Any> React.lazyComponentWithChildren(
-	noinline factory: () -> Promise<RComponent.WithChildren<Props>>,
+	crossinline factory: () -> Promise<RComponent.WithChildren<Props>>,
 ): RComponent.WithChildren<Props> =
 	lazy {
 		factory().then { content ->
