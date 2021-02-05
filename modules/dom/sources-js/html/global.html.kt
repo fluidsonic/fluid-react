@@ -16,6 +16,7 @@ public external interface HTMLProps : DOMProps {
 	public var onMouseUp: ((event: MouseEvent) -> Unit)?
 	public var onMouseMove: ((event: MouseEvent) -> Unit)?
 	public var onPaste: ((event: ClipboardEvent) -> Unit)?
+	public var onScroll: ((event: UIEvent) -> Unit)?
 	public var onSubmit: ((event: KeyboardEvent) -> Unit)? // TODO SubmitEvent
 	public var onTouchStart: ((event: TouchEvent) -> Unit)?
 	public var onTransitionEnd: ((event: TransitionEvent) -> Unit)?

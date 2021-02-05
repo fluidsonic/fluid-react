@@ -1,5 +1,4 @@
 import io.fluidsonic.gradle.*
-import org.jetbrains.kotlin.gradle.plugin.*
 
 fluidLibraryModule(description = "FIXME") {
 	withoutPublishing()
@@ -9,7 +8,7 @@ fluidLibraryModule(description = "FIXME") {
 	}
 
 	targets {
-		js(KotlinJsCompilerType.IR) {
+		js {
 			withoutNodeJs()
 
 			dependencies {
