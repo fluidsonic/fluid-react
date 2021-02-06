@@ -405,8 +405,8 @@ public inline fun React.lazyComponent(crossinline factory: () -> Promise<RBuilde
 @Suppress("unused")
 public inline fun <Props : Any> React.lazyComponent(crossinline factory: () -> Promise<RComponent<Props>>): RComponent<Props> =
 	lazy {
-		factory().then { content ->
-			RElementFactoryModule(content.asFactory())
+		factory().then { component ->
+			RElementFactoryModule(component.asFactory())
 		}
 	}.asComponent()
 
@@ -417,8 +417,8 @@ public inline fun <Props : Any> React.lazyComponentWithChildren(
 	crossinline factory: () -> Promise<RComponent.WithChildren<Props>>,
 ): RComponent.WithChildren<Props> =
 	lazy {
-		factory().then { content ->
-			RElementFactoryModule(content.asFactory())
+		factory().then { component ->
+			RElementFactoryModule(component.asFactory())
 		}
 	}.asComponent()
 
