@@ -29,6 +29,7 @@ public inline operator fun <Value> RState<Value>.getValue(thisRef: Any?, propert
 
 public inline fun <Value> RState<Value>.set(value: Value) {
 	component2()(value)
+	asDynamic()[0] = value
 }
 
 

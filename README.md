@@ -15,8 +15,9 @@ Kotlin/JS wrapper for [React](https://reactjs.org/).
 - Lower size and performance overhead.
 - More type safety, esp. around hooks.
 - Props allow `class` instead of just `external interface`.
+- Updates of local properties delegated with `by useState(…)` are reflected immediately.
 - `@DslMarker` colors.
-- **Highly experimental.** IR compiler only. Relies on unofficial compiler behavior.
+- **Experimental.** IR compiler only. Relies on unofficial compiler behavior.
 - **Work in progress. Please contribute 😃**
 - [Kotlin/JS-optimized CSS library](https://github.com/fluidsonic/fluid-css) with nice API in the works.
 
