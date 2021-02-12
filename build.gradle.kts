@@ -4,7 +4,7 @@ plugins {
 	id("io.fluidsonic.gradle") version "1.1.21"
 }
 
-fluidLibrary(name = "react", version = "0.9.2") {
+fluidLibrary(name = "react", version = "0.9.3") {
 	allModules {
 		targets {
 			js {
