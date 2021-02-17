@@ -16,6 +16,7 @@ Kotlin/JS wrapper for [React](https://reactjs.org/).
 - More type safety, esp. around hooks.
 - Props allow `class` instead of just `external interface`.
 - Updates of local properties delegated with `by useState(…)` are reflected immediately.
+- Support for coroutines with `CoroutineScope(…) { … }`, `useCoroutineScope()` and `useFlow(…)`.
 - `@DslMarker` colors.
 - **Experimental.** IR compiler only. Relies on unofficial compiler behavior.
 - **Work in progress. Please contribute 😃**
@@ -35,8 +36,9 @@ Kotlin/JS wrapper for [React](https://reactjs.org/).
 
 ```kt
 dependencies {
-    implementation("io.fluidsonic.react:fluid-react-dom:0.9.4")
-    implementation("io.fluidsonic.react:fluid-react-router-dom:0.9.4") // if you need routing
+    implementation("io.fluidsonic.react:fluid-react-dom:0.9.4")        // basis module
+    implementation("io.fluidsonic.react:fluid-react-router-dom:0.9.4") // if you want routing
+    implementation("io.fluidsonic.react:fluid-react-coroutines:0.9.4") // if you want coroutine support
 }
 ```
 
