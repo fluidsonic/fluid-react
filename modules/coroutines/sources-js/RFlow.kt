@@ -8,7 +8,7 @@ public fun <Value> RHooks.useFlow(flow: Flow<Value>, initialValue: Value): Value
 	val scope = useCoroutineScope()
 	var value by useState(initialValue)
 
-	useEffect {
+	useEffect(null) {
 		cleanup(flow.onEach { value = it }.launchIn(scope)::cancel)
 	}
 
