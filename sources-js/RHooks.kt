@@ -98,7 +98,7 @@ public inline fun <Value> RHooks.useMemo(
 	val current = ref.current
 
 	return when {
-		current === noValue -> createValue().also { ref.current = createValue() }
+		current === noValue -> createValue().also { ref.current = it }
 		else -> current.unsafeCast<Value>()
 	}
 }
