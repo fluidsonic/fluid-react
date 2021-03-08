@@ -36,9 +36,9 @@ Kotlin/JS wrapper for [React](https://reactjs.org/).
 
 ```kt
 dependencies {
-    implementation("io.fluidsonic.react:fluid-react-dom:0.9.6")        // basis module
-    implementation("io.fluidsonic.react:fluid-react-router-dom:0.9.6") // if you want routing
-    implementation("io.fluidsonic.react:fluid-react-coroutines:0.9.6") // if you want coroutine support
+    implementation("io.fluidsonic.react:fluid-react-dom:0.9.7")        // basis module
+    implementation("io.fluidsonic.react:fluid-react-router-dom:0.9.7") // if you want routing
+    implementation("io.fluidsonic.react:fluid-react-coroutines:0.9.7") // if you want coroutine support
 }
 ```
 
