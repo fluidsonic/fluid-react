@@ -1,4 +1,5 @@
 import io.fluidsonic.react.*
+import io.fluidsonic.react.helmet.*
 import kotlinx.browser.*
 
 
@@ -7,8 +8,13 @@ fun main() {
 	val container = document.createElement("div").also(body::appendChild)
 
 	react.render(container = container) {
-		+"Hello world"
+		StrictMode {
+			HelmetProvider {
+				Helmet(defaultTitle = "Playground", titleTemplate = "%s - Playground")
 
-		EmojiContainer(EmojiContainerProps("😍")) { strong { +"cool" } }
+				+"Hello world"
+				EmojiContainer(EmojiContainerProps("😍")) { strong { +"cool" } }
+			}
+		}
 	}
 }

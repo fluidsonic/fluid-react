@@ -1,4 +1,5 @@
 import io.fluidsonic.react.*
+import io.fluidsonic.react.helmet.*
 import kotlinx.browser.*
 
 
@@ -9,6 +10,10 @@ val EmojiContainer by react.componentWithChildren { props: EmojiContainerProps, 
 		val timerId = window.setTimeout({ count += 1 }, 2000)
 
 		cleanup { window.clearTimeout(timerId) }
+	}
+
+	Helmet {
+		title { +"Emoji Container" }
 	}
 
 	h1 { +"Your emoji, $count times 🎉" }

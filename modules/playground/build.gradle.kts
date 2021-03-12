@@ -12,6 +12,7 @@ fluidLibraryModule(description = "FIXME") {
 			withoutNodeJs()
 
 			dependencies {
+				api(project(":fluid-react-helmet"))
 				api(project(":fluid-react-router-dom"))
 
 				implementation(devNpm("html-webpack-plugin", "~4.5.0"))
