@@ -145,6 +145,22 @@ public external interface RBuilder : RTags {
 	}
 
 
+	// Workaround for lack of https://youtrack.jetbrains.com/issue/KT-42435
+	@InlineOnly
+	@RDsl
+	public final inline operator fun Function.invoke() {
+		with(this@RBuilder) { invoke() }
+	}
+
+
+	// Workaround for lack of https://youtrack.jetbrains.com/issue/KT-42435
+	@InlineOnly
+	@RDsl
+	public final inline operator fun <P1> Function1<P1>.invoke(p1: P1) {
+		with(this@RBuilder) { invoke(p1) }
+	}
+
+
 	@InlineOnly
 	@RDsl
 	public final inline operator fun <Value> RConsumer<Value>.invoke(noinline content: RBuilder.(context: Value) -> Unit) {
@@ -241,6 +257,18 @@ public external interface RBuilder : RTags {
 	@RDsl
 	public final inline operator fun String?.unaryPlus() {
 		append(text = this)
+	}
+
+
+	public interface Function {
+
+		public operator fun RBuilder.invoke()
+	}
+
+
+	public interface Function1<in P1> {
+
+		public operator fun RBuilder.invoke(p1: P1)
 	}
 
 
