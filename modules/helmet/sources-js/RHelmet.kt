@@ -28,7 +28,6 @@ public external interface RHelmetTags {
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.Helmet(
 	defaultTitle: String? = null,
 	defer: Boolean? = null,

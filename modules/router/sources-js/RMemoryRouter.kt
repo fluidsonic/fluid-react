@@ -14,7 +14,6 @@ public external interface RMemoryRouterProps : RProps.WithChildren {
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.MemoryRouter(
 	noinline getUserConfirmation: ((message: String, callback: (ok: Boolean) -> Unit) -> Unit)? = null,
 	initialEntries: Array<out RRouterLocationDescriptor<*>> = emptyArray(),

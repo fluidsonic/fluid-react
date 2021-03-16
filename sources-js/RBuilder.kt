@@ -1,4 +1,13 @@
-@file:Suppress("NOTHING_TO_INLINE")
+@file:Suppress(
+	"EXTENSION_FUNCTION_IN_EXTERNAL_DECLARATION",
+	"INLINE_EXTERNAL_DECLARATION",
+	"NON_ABSTRACT_MEMBER_OF_EXTERNAL_INTERFACE",
+	"NOTHING_TO_INLINE",
+	"WRONG_BODY_OF_EXTERNAL_DECLARATION",
+	"WRONG_DEFAULT_VALUE_FOR_EXTERNAL_FUN_PARAMETER",
+	"WRONG_EXTERNAL_DECLARATION",
+	"WRONG_MODIFIER_CONTAINING_DECLARATION",
+)
 
 package io.fluidsonic.react
 
@@ -7,70 +16,50 @@ import kotlin.reflect.*
 
 
 @RDsl
-@Suppress(
-	"DECLARATION_CANT_BE_INLINED",
-	"EXTENSION_FUNCTION_IN_EXTERNAL_DECLARATION",
-	"INLINE_EXTERNAL_DECLARATION",
-	"INVISIBLE_MEMBER",
-	"INVISIBLE_REFERENCE",
-	"NON_ABSTRACT_MEMBER_OF_EXTERNAL_INTERFACE",
-	"WRONG_BODY_OF_EXTERNAL_DECLARATION",
-	"WRONG_DEFAULT_VALUE_FOR_EXTERNAL_FUN_PARAMETER",
-	"WRONG_EXTERNAL_DECLARATION",
-	"WRONG_MODIFIER_CONTAINING_DECLARATION",
-)
 public external interface RBuilder : RTags {
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun RElement?.invoke() {
 		append(this)
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun Array<out RElement?>?.invoke() {
 		append(this)
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun RComponent<Unit>.invoke(key: String? = null) {
 		append(react.element(component = this, key = key))
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun RComponent.WithChildren<Unit>.invoke(key: String? = null, content: RBuilder.() -> Unit) {
 		append(react.element(component = this, key = key, content = content))
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun <Props : Any> RComponent<Props>.invoke(props: Props, key: String? = null) {
 		append(react.element(component = this, props = props, key = key))
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun <Props : Any> RComponent.WithChildren<Props>.invoke(props: Props, key: String? = null, content: RBuilder.() -> Unit) {
 		append(react.element(component = this, props = props, key = key, content = content))
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun KClass<out RElementFactoryClass<in RProps.WithChildren>>.invoke(key: String? = null, ref: RMutableRef<*>? = null) {
 		append(react.element(factoryClass = this, key = key, ref = ref))
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun KClass<out RElementFactoryClass<RProps.WithChildren>>.invoke(
 		key: String? = null,
@@ -81,7 +70,6 @@ public external interface RBuilder : RTags {
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun <Props : RProps> KClass<out RElementFactoryClass<Props>>.invoke(
 		key: String? = null,
@@ -92,14 +80,12 @@ public external interface RBuilder : RTags {
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun RElementFactory<in RProps.WithChildren>.invoke(key: String? = null, ref: RMutableRef<*>? = null) {
 		append(react.element(factory = this, key = key, ref = ref))
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun RElementFactory<RProps.WithChildren>.invoke(
 		key: String? = null,
@@ -111,7 +97,6 @@ public external interface RBuilder : RTags {
 
 
 	// TODO Builder shouldn't allow adding children when Props is not subtype of RProps.WithChildren
-	@InlineOnly
 	@RDsl
 	public final inline operator fun <Props : RProps> RElementFactory<Props>.invoke(
 		key: String? = null,
@@ -122,7 +107,6 @@ public external interface RBuilder : RTags {
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun <Props : RProps> RElementFactory<Props>.invoke(
 		props: Props,
@@ -133,7 +117,6 @@ public external interface RBuilder : RTags {
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun <Props : RProps.WithChildren> RElementFactory<Props>.invoke(
 		props: Props,
@@ -145,30 +128,26 @@ public external interface RBuilder : RTags {
 	}
 
 
-	// Workaround for lack of https://youtrack.jetbrains.com/issue/KT-42435
-	@InlineOnly
+	// Workaround for lack of https://youtrack.jetbrains.com/issue/KT-10468
 	@RDsl
-	public final inline operator fun Function.invoke() {
-		with(this@RBuilder) { invoke() }
+	public final inline operator fun RFunction.invoke() {
+		this@RBuilder.invoke()
 	}
 
 
-	// Workaround for lack of https://youtrack.jetbrains.com/issue/KT-42435
-	@InlineOnly
+	// Workaround for lack of https://youtrack.jetbrains.com/issue/KT-10468
 	@RDsl
-	public final inline operator fun <P1> Function1<P1>.invoke(p1: P1) {
-		with(this@RBuilder) { invoke(p1) }
+	public final inline operator fun <P1> RFunction1<P1>.invoke(p1: P1) {
+		this@RBuilder.invoke(p1)
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun <Value> RConsumer<Value>.invoke(noinline content: RBuilder.(context: Value) -> Unit) {
 		consumer(this, content = content)
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun <Value> RProvider<Value>.invoke(value: Value, content: RBuilder.() -> Unit) {
 		provider(this, value = value, content = content)
@@ -176,7 +155,6 @@ public external interface RBuilder : RTags {
 
 
 	// Resolves overload resolution ambiguity with RElementFactory<…>?.invoke(key: String?, …)
-	@InlineOnly
 	@RDsl
 	public final inline operator fun RProvider<String>.invoke(value: String, content: RBuilder.() -> Unit) {
 		provider(this, value = value, content = content)
@@ -184,7 +162,6 @@ public external interface RBuilder : RTags {
 
 
 	// Resolves overload resolution ambiguity with RElementFactory<…>?.invoke(key: String?, …)
-	@InlineOnly
 	@RDsl
 	public final inline operator fun RProvider<String?>.invoke(value: String?, content: RBuilder.() -> Unit) {
 		provider(this, value = value, content = content)
@@ -253,22 +230,9 @@ public external interface RBuilder : RTags {
 	}
 
 
-	@InlineOnly
 	@RDsl
 	public final inline operator fun String?.unaryPlus() {
 		append(text = this)
-	}
-
-
-	public interface Function {
-
-		public operator fun RBuilder.invoke()
-	}
-
-
-	public interface Function1<in P1> {
-
-		public operator fun RBuilder.invoke(p1: P1)
 	}
 
 

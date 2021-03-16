@@ -1,5 +1,4 @@
 @file:JsModule("react")
-@file:Suppress("FunctionName")
 
 package io.fluidsonic.react.external
 

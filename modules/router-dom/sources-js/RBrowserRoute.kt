@@ -15,7 +15,6 @@ internal external interface RBrowserRouterProps : RProps.WithChildren {
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.BrowserRouter(
 	basename: String = "/",
 	noinline getUserConfirmation: ((message: String, callback: (ok: Boolean) -> Unit) -> Unit)? = null,

@@ -17,7 +17,6 @@ public external interface RRedirectProps : RProps {
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.Redirect(
 	to: String,
 	exact: Boolean = true,
@@ -40,7 +39,6 @@ public inline fun RBuilder.Redirect(
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.Redirect(
 	to: RRouterLocationDescriptorOrString,
 	exact: Boolean = true,

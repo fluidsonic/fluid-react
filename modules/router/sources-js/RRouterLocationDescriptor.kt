@@ -14,7 +14,6 @@ public external interface RRouterLocationDescriptor<out State> : RRouterLocation
 }
 
 
-@Suppress("FunctionName")
 public fun RRouterLocationDescriptor(
 	pathname: String? = null, // pathname first b/c RRouterLocationDescriptor(String) could be confused with RRouterLocationDescriptorOrString(String)
 	hash: String? = null,
@@ -30,7 +29,6 @@ public fun RRouterLocationDescriptor(
 	}
 
 
-@Suppress("FunctionName")
 public fun <State> RRouterLocationDescriptor(
 	pathname: String? = null, // pathname first b/c RRouterLocationDescriptor(String) could be confused with RRouterLocationDescriptorOrString(String)
 	hash: String? = null,
@@ -47,7 +45,6 @@ public fun <State> RRouterLocationDescriptor(
 	}
 
 
-@Suppress("FunctionName")
 public fun RRouterLocationDescriptorOrString(
 	pathname: String,
 ): RRouterLocationDescriptorOrString =

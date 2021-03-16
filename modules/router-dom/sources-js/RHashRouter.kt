@@ -13,7 +13,6 @@ public external interface RHashRouterProps : RProps.WithChildren {
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.HashRouter(
 	basename: String = "/",
 	noinline getUserConfirmation: ((message: String, callback: (ok: Boolean) -> Unit) -> Unit)? = null,

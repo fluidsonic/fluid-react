@@ -14,7 +14,6 @@ public external interface RRouteOptions {
 }
 
 
-@Suppress("FunctionName")
 public inline fun RRouteOptions(
 	path: RRoutePathFilter,
 	exact: Boolean = true,
@@ -29,7 +28,6 @@ public inline fun RRouteOptions(
 	}
 
 
-@Suppress("FunctionName")
 public inline fun RRouteOptions(
 	path: String,
 	exact: Boolean = true,

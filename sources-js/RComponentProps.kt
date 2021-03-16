@@ -14,12 +14,10 @@ internal external interface RComponentProps<out Props : Any> : RProps {
 
 
 @PublishedApi
-@Suppress("FunctionName")
 internal inline fun <Props : Any> RComponentProps(props: Props): RComponentProps<Props> =
 	jsObject { it.props = props }
 
 
 @PublishedApi
-@Suppress("FunctionName")
 internal inline fun <Props : Any> RComponentPropsWithChildren(props: Props): RComponentProps.WithChildren<Props> =
 	jsObject { it.props = props }

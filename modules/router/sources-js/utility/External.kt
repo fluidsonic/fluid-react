@@ -1,5 +1,5 @@
 @file:JsModule("react-router")
-@file:Suppress("ClassName", "FunctionName")
+@file:Suppress("ClassName")
 
 package io.fluidsonic.react.router.external
 

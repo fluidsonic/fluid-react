@@ -19,7 +19,7 @@ Kotlin/JS wrapper for [React](https://reactjs.org/), [React Router](https://reac
 - Updates of local properties delegated with `by useState(…)` are reflected immediately.
 - Support for coroutines with `CoroutineScope(…) { … }`, `useCoroutineScope()` and `useFlow(…)`.
 - `@DslMarker` colors.
-- **Experimental** and IR compiler only.
+- **Experimental** and IR compiler only. Relies on compiler-internal behavior until [KT-10468](https://youtrack.jetbrains.com/issue/KT-10468) is solved.
 - **Contributions welcome 😃**
 - [Kotlin/JS-optimized CSS library](https://github.com/fluidsonic/fluid-css) with nice API in the works.
 

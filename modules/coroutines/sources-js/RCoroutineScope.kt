@@ -7,7 +7,6 @@ private val Context = react.context<CoroutineScope>(GlobalScope)
 
 
 @RDsl
-@Suppress("FunctionName")
 public fun RBuilder.CoroutineScope(scope: CoroutineScope, content: RBuilder.() -> Unit) {
 	Context.Provider(scope, content = content)
 }

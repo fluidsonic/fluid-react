@@ -4,7 +4,6 @@ import io.fluidsonic.react.external.*
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.StrictMode(content: RBuilder.() -> Unit) {
 	if (isProduction())
 		content()

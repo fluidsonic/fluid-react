@@ -11,7 +11,6 @@ public external interface RRouterSwitchProps : RProps.WithChildren {
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.RouteSwitch(
 	location: RRouterLocation<*>? = null,
 	content: RBuilder.() -> Unit,

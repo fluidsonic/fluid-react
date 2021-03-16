@@ -12,7 +12,6 @@ internal external interface RHelmetProviderProps : RProps.WithChildren {
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.HelmetProvider(
 	context: dynamic = null,
 	content: RBuilder.() -> Unit,

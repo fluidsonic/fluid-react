@@ -12,7 +12,6 @@ internal external interface RSuspenseProps : RProps.WithChildren {
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.Suspense(
 	fallback: RElement?,
 	key: String? = null,

@@ -15,7 +15,6 @@ public external interface RRouteProps : RProps.WithChildren {
 
 
 @RDsl
-@Suppress("FunctionName")
 public inline fun RBuilder.Route(
 	path: String,
 	exact: Boolean = true,
