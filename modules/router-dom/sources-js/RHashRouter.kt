@@ -4,11 +4,12 @@ import io.fluidsonic.react.*
 import io.fluidsonic.react.router.external.*
 
 
-public external interface RHashRouterProps : RProps.WithChildren {
+@PublishedApi
+internal external interface RHashRouterProps : RProps.WithChildren {
 
-	public var basename: String?
-	public var getUserConfirmation: ((message: String, callback: (ok: Boolean) -> Unit) -> Unit)?
-	public var hashType: String? // slash | noslash | hashbang
+	var basename: String?
+	var getUserConfirmation: ((message: String, callback: (ok: Boolean) -> Unit) -> Unit)?
+	var hashType: String? // slash | noslash | hashbang
 }
 
 

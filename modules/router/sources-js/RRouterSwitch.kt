@@ -4,9 +4,10 @@ import io.fluidsonic.react.*
 import io.fluidsonic.react.router.external.*
 
 
-public external interface RRouterSwitchProps : RProps.WithChildren {
+@PublishedApi
+internal external interface RRouterSwitchProps : RProps.WithChildren {
 
-	public var location: RRouterLocation<*>?
+	var location: RRouterLocation<*>?
 }
 
 

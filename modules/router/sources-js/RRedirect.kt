@@ -4,15 +4,16 @@ import io.fluidsonic.react.*
 import io.fluidsonic.react.router.external.*
 
 
-public external interface RRedirectProps : RProps {
+@PublishedApi
+internal external interface RRedirectProps : RProps {
 
-	public var exact: Boolean?
-	public var from: String?
-	public var path: String?
-	public var push: Boolean?
-	public var sensitive: Boolean?
-	public var strict: Boolean?
-	public var to: RRouterLocationDescriptorOrString
+	var exact: Boolean?
+	var from: String?
+	var path: String?
+	var push: Boolean?
+	var sensitive: Boolean?
+	var strict: Boolean?
+	var to: RRouterLocationDescriptorOrString
 }
 
 

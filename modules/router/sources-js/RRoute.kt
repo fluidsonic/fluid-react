@@ -4,13 +4,15 @@ import io.fluidsonic.react.*
 import io.fluidsonic.react.router.external.*
 
 
-public external interface RRouteProps : RProps.WithChildren {
+@PublishedApi
+internal external interface RRouteProps : RProps.WithChildren {
 
-	public var exact: Boolean?
-	public var location: RRouterLocation<*>?
-	public var path: String?
-	public var sensitive: Boolean?
-	public var strict: Boolean?
+	var exact: Boolean?
+	var location: RRouterLocation<*>?
+	var path: String?
+	var render: (() -> RElement?)?
+	var sensitive: Boolean?
+	var strict: Boolean?
 }
 
 
@@ -21,15 +23,14 @@ public inline fun RBuilder.Route(
 	location: RRouterLocation<*>? = null,
 	sensitive: Boolean = true,
 	strict: Boolean = true,
-	content: RBuilder.() -> Unit,
+	crossinline content: RBuilder.() -> Unit,
 ) {
 	ReactRouter_Route::class {
 		attrs.exact = exact
 		location?.let { attrs.location = it }
 		attrs.path = path
+		attrs.render = { react.element(content) }
 		attrs.sensitive = sensitive
 		attrs.strict = strict
-
-		content()
 	}
 }

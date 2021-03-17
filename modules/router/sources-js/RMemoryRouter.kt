@@ -4,12 +4,13 @@ import io.fluidsonic.react.*
 import io.fluidsonic.react.router.external.*
 
 
-public external interface RMemoryRouterProps : RProps.WithChildren {
+@PublishedApi
+internal external interface RMemoryRouterProps : RProps.WithChildren {
 
-	public var getUserConfirmation: ((message: String, callback: (ok: Boolean) -> Unit) -> Unit)?
-	public var initialEntries: Array<out RRouterLocationDescriptor<*>>?
-	public var initialIndex: Int?
-	public var keyLength: Int?
+	var getUserConfirmation: ((message: String, callback: (ok: Boolean) -> Unit) -> Unit)?
+	var initialEntries: Array<out RRouterLocationDescriptor<*>>?
+	var initialIndex: Int?
+	var keyLength: Int?
 }
 
 
