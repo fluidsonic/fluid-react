@@ -3,7 +3,7 @@ package io.fluidsonic.react
 import kotlinx.coroutines.*
 
 
-private val Context = react.context<CoroutineScope>(GlobalScope)
+private val Context = react.context(GlobalScope + Dispatchers.Main.immediate)
 
 
 @RDsl
