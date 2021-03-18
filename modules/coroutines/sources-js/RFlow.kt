@@ -16,6 +16,15 @@ public fun <Value> RHooks.useFlow(flow: Flow<Value>, initialValue: Value): Value
 }
 
 
+// See https://kotlinlang.slack.com/archives/CRJCTR5PD/p1616079912009800
 @RDsl
-public fun <Value> RHooks.useFlow(flow: StateFlow<Value>): Value =
-	useFlow(flow, initialValue = flow.value)
+public fun <Value> RHooks.useFlow(flow: StateFlow<Value>): Value {
+	val scope = useCoroutineScope()
+	val (_, setValue) = useState(flow.value)
+
+	useEffect(null) {
+		cleanup(flow.onEach { setValue(it) }.launchIn(scope)::cancel)
+	}
+
+	return flow.value
+}
