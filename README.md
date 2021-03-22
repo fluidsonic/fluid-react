@@ -37,11 +37,11 @@ Kotlin/JS wrapper for [React](https://reactjs.org/), [React Router](https://reac
 
 ```kt
 dependencies {
-    implementation("io.fluidsonic.react:fluid-react-dom:0.9.10") // basis module
+    implementation("io.fluidsonic.react:fluid-react-dom:0.10.0") // basis module
 
-    implementation("io.fluidsonic.react:fluid-react-coroutines:0.9.10") // optional coroutine support
-    implementation("io.fluidsonic.react:fluid-react-helmet:0.9.10")     // optional dynamic metadata (react-helmet-async)
-    implementation("io.fluidsonic.react:fluid-react-router-dom:0.9.10") // optional routing (react-router)
+    implementation("io.fluidsonic.react:fluid-react-coroutines:0.10.0") // optional coroutine support
+    implementation("io.fluidsonic.react:fluid-react-helmet:0.10.0")     // optional dynamic metadata (react-helmet-async)
+    implementation("io.fluidsonic.react:fluid-react-router-dom:0.10.0") // optional routing (react-router)
 }
 ```
 
