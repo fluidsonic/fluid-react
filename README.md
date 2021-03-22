@@ -3,7 +3,7 @@ fluid-react
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.fluidsonic.react/fluid-react?label=Maven%20Central)](https://search.maven.org/artifact/io.fluidsonic.react/fluid-react)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.4.31%20(JS)-blue.svg)](https://github.com/JetBrains/kotlin/releases/v1.4.31)
-[![React](https://img.shields.io/badge/React-17.0.1-blue.svg)](https://github.com/facebook/react/releases/tag/v17.0.1)
+[![React](https://img.shields.io/badge/React-experimental%20(March%2019,%202021)-blue.svg)](https://www.npmjs.com/package/react/v/0.0.0-experimental-7d06b80af)
 [![#fluid-libraries Slack Channel](https://img.shields.io/badge/slack-%23fluid--libraries-543951.svg?label=Slack)](https://kotlinlang.slack.com/messages/C7UDFSVT2/)
 
 Kotlin/JS wrapper for [React](https://reactjs.org/), [React Router](https://reactrouter.com/) and
@@ -12,9 +12,9 @@ Kotlin/JS wrapper for [React](https://reactjs.org/), [React Router](https://reac
 - Similar to [kotlin-react](https://github.com/JetBrains/kotlin-wrappers/tree/master/kotlin-react).
 - Nicer and consistent API. Easier to use.
 - Not multiplatform. Optimized for Kotlin/JS instead.
-- No dependencies beside React.
 - Lower size and performance overhead.
 - More type safety, esp. around hooks.
+- With new Concurrent Mode in mind, thus depending on *experimental* React releases.
 - Props allow `class` instead of just `external interface`.
 - Updates of local properties delegated with `by useState(…)` are reflected immediately.
 - Support for coroutines with `CoroutineScope(…) { … }`, `useCoroutineScope()` and `useFlow(…)`.
@@ -55,7 +55,7 @@ fun main() {
     val body = checkNotNull(document.body)
     val container = document.createElement("div").also(body::appendChild)
 
-    react.render(container) {
+    react.createRoot(container).render {
         +"Hello world"
 
         EmojiContainer(EmojiContainerProps("😍")) { strong { +"cool" } }

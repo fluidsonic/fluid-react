@@ -4,10 +4,11 @@ import io.fluidsonic.react.external.*
 import org.w3c.dom.*
 
 
-// FIXME
-//	fun batchedUpdates(block: () -> Unit) {
-//		react.unstable_batchedUpdates(block)
-//	}
+@RDsl
+public inline fun React.createRoot(
+	container: Element,
+): RRoot =
+	external_createRoot(container = container)
 
 
 @RDsl

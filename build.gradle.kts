@@ -22,7 +22,7 @@ fluidLibraryModule(description = "FIXME") {
 	targets {
 		js {
 			dependencies {
-				implementation(npm("react", "~17.0.1"))
+				implementation(npm("react", Versions.react))
 			}
 		}
 	}

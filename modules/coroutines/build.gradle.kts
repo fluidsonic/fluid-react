@@ -5,7 +5,7 @@ fluidLibraryModule(description = "FIXME") {
 		js {
 			dependencies {
 				api(project(":"))
-				api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+				api(kotlinx("coroutines-core", Versions.kotlinx_coroutines))
 			}
 		}
 	}

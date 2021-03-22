@@ -6,7 +6,7 @@ fluidLibraryModule(description = "FIXME") {
 			dependencies {
 				api(project(":fluid-react-dom"))
 
-				implementation(npm("react-helmet-async", "~1.0.9"))
+				implementation(npm("react-helmet-async", Versions.react_helmet_async))
 			}
 		}
 	}

@@ -15,6 +15,13 @@ internal external fun external_createPortal(
 ): RElement
 
 
+@JsName("unstable_createRoot")
+@PublishedApi
+internal external fun external_createRoot(
+	container: Element,
+): RRoot
+
+
 @JsName("render")
 @PublishedApi
 internal external fun external_render(
