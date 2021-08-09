@@ -55,7 +55,7 @@ public inline fun <Props : Any> React.component(
 	crossinline render: RBuilder.WithHooks.(props: Props) -> Unit,
 ): RComponent<Props> {
 	val componentFunction = { props: RComponentProps<Props> ->
-		element(RElementBuilder().apply { render(props.props) }.buildChildren())
+		element(RElementBuilder().apply { render(props.props) }.elements)
 	}
 
 	return componentFunction.unsafeCast<RComponent<Props>>()
@@ -80,7 +80,7 @@ public inline fun React.componentWithChildren(
 	crossinline render: RBuilder.WithHooks.(children: RChildren?) -> Unit,
 ): RComponent.WithChildren<Unit> {
 	val componentFunction = { props: RComponentProps.WithChildren<Unit> ->
-		element(RElementBuilder().apply { render(props.children) }.buildChildren())
+		element(RElementBuilder().apply { render(props.children) }.elements)
 	}
 
 	return componentFunction.unsafeCast<RComponent.WithChildren<Unit>>()
@@ -106,7 +106,7 @@ public inline fun <Props : Any> React.componentWithChildren(
 	crossinline render: RBuilder.WithHooks.(props: Props, children: RChildren?) -> Unit,
 ): RComponent.WithChildren<Props> {
 	val componentFunction = { props: RComponentProps.WithChildren<Props> ->
-		element(RElementBuilder().apply { render(props.props, props.children) }.buildChildren())
+		element(RElementBuilder().apply { render(props.props, props.children) }.elements)
 	}
 
 	return componentFunction.unsafeCast<RComponent.WithChildren<Props>>()
@@ -132,7 +132,7 @@ public inline fun <Value> React.context(defaultValue: Value): RContext<Value> =
 @RDsl
 @Suppress("unused")
 public inline fun React.element(content: RBuilder.() -> Unit): RElement? =
-	element(RElementBuilder().apply(content).buildChildren())
+	element(RElementBuilder().apply(content).elements)
 
 
 @RDsl
@@ -249,7 +249,7 @@ public inline fun React.element(
 			key?.let { props.key = key }
 			ref?.let { props.ref = ref }
 		},
-		children = RElementBuilder().apply(content).buildChildren(),
+		children = RElementBuilder().apply(content).elements,
 	)
 
 
@@ -269,7 +269,7 @@ public inline fun <Props : RProps> React.element(
 	return react_element(
 		factory = factory,
 		props = builder.attrs,
-		children = builder.buildChildren(),
+		children = builder.elements,
 	)
 }
 
@@ -308,7 +308,7 @@ public inline fun <Props : RProps.WithChildren> React.element(
 	return react_element(
 		factory = factory,
 		props = props,
-		children = RElementBuilder().apply(content).buildChildren(),
+		children = RElementBuilder().apply(content).elements,
 	)
 }
 

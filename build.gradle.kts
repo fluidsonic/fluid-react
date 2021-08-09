@@ -1,7 +1,7 @@
 import io.fluidsonic.gradle.*
 
 plugins {
-	id("io.fluidsonic.gradle") version "1.1.22"
+	id("io.fluidsonic.gradle") version "1.1.24"
 }
 
 fluidLibrary(name = "react", version = "0.10.1") {

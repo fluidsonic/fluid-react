@@ -1,22 +1,17 @@
-@file:Suppress(
-	"EXTENSION_FUNCTION_IN_EXTERNAL_DECLARATION",
-	"INLINE_EXTERNAL_DECLARATION",
-	"NON_ABSTRACT_MEMBER_OF_EXTERNAL_INTERFACE",
-	"NOTHING_TO_INLINE",
-	"WRONG_BODY_OF_EXTERNAL_DECLARATION",
-	"WRONG_DEFAULT_VALUE_FOR_EXTERNAL_FUN_PARAMETER",
-	"WRONG_EXTERNAL_DECLARATION",
-	"WRONG_MODIFIER_CONTAINING_DECLARATION",
-)
+@file:Suppress("NOTHING_TO_INLINE", "WRONG_MODIFIER_CONTAINING_DECLARATION")
 
 package io.fluidsonic.react
 
-import kotlin.internal.*
 import kotlin.reflect.*
 
 
+// FIXME Use context receiver once available.
+// FIXME This is no longer an `external` interface due to changes in the Kotlin compiler introduced in 1.5.20.
 @RDsl
-public external interface RBuilder : RTags {
+public sealed interface RBuilder : RTags {
+
+	public fun append(element: RElement?)
+
 
 	@RDsl
 	public final inline operator fun RElement?.invoke() {
@@ -124,7 +119,7 @@ public external interface RBuilder : RTags {
 		ref: RMutableRef<*>? = null,
 		content: RBuilder.() -> Unit,
 	) {
-		append(react.element(factory = this, key = key, ref = ref, content = content))
+		append(react.element(factory = this, props = props, key = key, ref = ref, content = content))
 	}
 
 
@@ -236,24 +231,12 @@ public external interface RBuilder : RTags {
 	}
 
 
-	public interface WithAttrs<out Attrs : RProps> : RBuilder
+	public interface WithAttrs<out Attrs : RProps> : RBuilder {
+
+		public val attrs: Attrs
+	}
 
 	public interface WithHooks : RBuilder, RHooks
-}
-
-
-@PublishedApi
-internal inline val RBuilder.data: Array<Any?>
-	get() = unsafeCast<Array<Any?>>()
-
-
-public inline val <Attrs : RProps> RBuilder.WithAttrs<Attrs>.attrs: Attrs
-	get() = data[0].unsafeCast<Attrs>()
-
-
-@RDsl
-public inline fun RBuilder.append(element: RElement?) {
-	data.push(element)
 }
 
 
@@ -275,7 +258,7 @@ public inline fun RBuilder.element(content: RBuilder.() -> Unit) {
 }
 
 
-// Implementation moved outside of RBuilder interface due to https://youtrack.jetbrains.com/issue/KT-43565
+// Implementation moved outside RBuilder interface due to https://youtrack.jetbrains.com/issue/KT-43565
 @PublishedApi
 internal inline fun <Value> RBuilder.consumer(consumer: RConsumer<Value>, noinline content: RBuilder.(context: Value) -> Unit) {
 	append(react.element(factory = consumer) {
@@ -286,7 +269,7 @@ internal inline fun <Value> RBuilder.consumer(consumer: RConsumer<Value>, noinli
 }
 
 
-// Implementation moved outside of RBuilder interface due to https://youtrack.jetbrains.com/issue/KT-43565
+// Implementation moved outside RBuilder interface due to https://youtrack.jetbrains.com/issue/KT-43565
 @PublishedApi
 internal inline fun <Value> RBuilder.provider(provider: RProvider<Value>, value: Value, content: RBuilder.() -> Unit) {
 	append(react.element(factory = provider) {

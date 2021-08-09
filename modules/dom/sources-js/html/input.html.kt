@@ -1,9 +1,4 @@
-@file:Suppress(
-	"INLINE_EXTERNAL_DECLARATION",
-	"NESTED_CLASS_IN_EXTERNAL_INTERFACE",
-	"NOTHING_TO_INLINE",
-	"WRONG_BODY_OF_EXTERNAL_DECLARATION",
-)
+@file:Suppress("NAME_CONTAINS_ILLEGAL_CHARS", "NESTED_CLASS_IN_EXTERNAL_INTERFACE", "NOTHING_TO_INLINE")
 
 package io.fluidsonic.react
 
@@ -28,38 +23,39 @@ public external interface HTMLInputProps : HTMLProps {
 }
 
 
+@JsName("0;0")
 public external interface HTMLInputType {
 
-	public companion object {
-
-		public inline val button: HTMLInputType get() = unsafe("button")
-		public inline val checkbox: HTMLInputType get() = unsafe("checkbox")
-		public inline val color: HTMLInputType get() = unsafe("color")
-		public inline val date: HTMLInputType get() = unsafe("date")
-		public inline val datetimeLocal: HTMLInputType get() = unsafe("datetime-local")
-		public inline val email: HTMLInputType get() = unsafe("email")
-		public inline val file: HTMLInputType get() = unsafe("file")
-		public inline val hidden: HTMLInputType get() = unsafe("hidden")
-		public inline val image: HTMLInputType get() = unsafe("image")
-		public inline val month: HTMLInputType get() = unsafe("month")
-		public inline val number: HTMLInputType get() = unsafe("number")
-		public inline val password: HTMLInputType get() = unsafe("password")
-		public inline val radio: HTMLInputType get() = unsafe("radio")
-		public inline val range: HTMLInputType get() = unsafe("range")
-		public inline val reset: HTMLInputType get() = unsafe("reset")
-		public inline val search: HTMLInputType get() = unsafe("search")
-		public inline val submit: HTMLInputType get() = unsafe("submit")
-		public inline val tel: HTMLInputType get() = unsafe("tel")
-		public inline val text: HTMLInputType get() = unsafe("text")
-		public inline val time: HTMLInputType get() = unsafe("time")
-		public inline val url: HTMLInputType get() = unsafe("url")
-		public inline val week: HTMLInputType get() = unsafe("week")
-
-
-		public inline fun unsafe(value: String): HTMLInputType =
-			value.unsafeCast<HTMLInputType>()
-	}
+	public companion object
 }
+
+
+public inline val HTMLInputType.Companion.button: HTMLInputType get() = unsafe("button")
+public inline val HTMLInputType.Companion.checkbox: HTMLInputType get() = unsafe("checkbox")
+public inline val HTMLInputType.Companion.color: HTMLInputType get() = unsafe("color")
+public inline val HTMLInputType.Companion.date: HTMLInputType get() = unsafe("date")
+public inline val HTMLInputType.Companion.datetimeLocal: HTMLInputType get() = unsafe("datetime-local")
+public inline val HTMLInputType.Companion.email: HTMLInputType get() = unsafe("email")
+public inline val HTMLInputType.Companion.file: HTMLInputType get() = unsafe("file")
+public inline val HTMLInputType.Companion.hidden: HTMLInputType get() = unsafe("hidden")
+public inline val HTMLInputType.Companion.image: HTMLInputType get() = unsafe("image")
+public inline val HTMLInputType.Companion.month: HTMLInputType get() = unsafe("month")
+public inline val HTMLInputType.Companion.number: HTMLInputType get() = unsafe("number")
+public inline val HTMLInputType.Companion.password: HTMLInputType get() = unsafe("password")
+public inline val HTMLInputType.Companion.radio: HTMLInputType get() = unsafe("radio")
+public inline val HTMLInputType.Companion.range: HTMLInputType get() = unsafe("range")
+public inline val HTMLInputType.Companion.reset: HTMLInputType get() = unsafe("reset")
+public inline val HTMLInputType.Companion.search: HTMLInputType get() = unsafe("search")
+public inline val HTMLInputType.Companion.submit: HTMLInputType get() = unsafe("submit")
+public inline val HTMLInputType.Companion.tel: HTMLInputType get() = unsafe("tel")
+public inline val HTMLInputType.Companion.text: HTMLInputType get() = unsafe("text")
+public inline val HTMLInputType.Companion.time: HTMLInputType get() = unsafe("time")
+public inline val HTMLInputType.Companion.url: HTMLInputType get() = unsafe("url")
+public inline val HTMLInputType.Companion.week: HTMLInputType get() = unsafe("week")
+
+
+public inline fun HTMLInputType.Companion.unsafe(value: String): HTMLInputType =
+	value.unsafeCast<HTMLInputType>()
 
 
 @RDsl

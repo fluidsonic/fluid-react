@@ -1,4 +1,5 @@
 @file:JsModule("react-dom")
+@file:Suppress("FunctionName")
 
 package io.fluidsonic.react.external
 
@@ -15,7 +16,7 @@ internal external fun external_createPortal(
 ): RElement
 
 
-@JsName("unstable_createRoot")
+@JsName("createRoot")
 @PublishedApi
 internal external fun external_createRoot(
 	container: Element,

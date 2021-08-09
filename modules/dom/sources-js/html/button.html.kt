@@ -1,9 +1,4 @@
-@file:Suppress(
-	"INLINE_EXTERNAL_DECLARATION",
-	"NESTED_CLASS_IN_EXTERNAL_INTERFACE",
-	"NOTHING_TO_INLINE",
-	"WRONG_BODY_OF_EXTERNAL_DECLARATION",
-)
+@file:Suppress("NAME_CONTAINS_ILLEGAL_CHARS", "NESTED_CLASS_IN_EXTERNAL_INTERFACE", "NOTHING_TO_INLINE")
 
 package io.fluidsonic.react
 
@@ -18,19 +13,20 @@ public external interface HTMLButtonProps : HTMLProps {
 }
 
 
+@JsName("0;0")
 public external interface HTMLButtonType {
 
-	public companion object {
-
-		public inline val button: HTMLButtonType get() = unsafe("button")
-		public inline val reset: HTMLButtonType get() = unsafe("reset")
-		public inline val submit: HTMLButtonType get() = unsafe("submit")
-
-
-		public inline fun unsafe(value: String): HTMLButtonType =
-			value.unsafeCast<HTMLButtonType>()
-	}
+	public companion object
 }
+
+
+public inline val HTMLButtonType.Companion.button: HTMLButtonType get() = unsafe("button")
+public inline val HTMLButtonType.Companion.reset: HTMLButtonType get() = unsafe("reset")
+public inline val HTMLButtonType.Companion.submit: HTMLButtonType get() = unsafe("submit")
+
+
+public inline fun HTMLButtonType.Companion.unsafe(value: String): HTMLButtonType =
+	value.unsafeCast<HTMLButtonType>()
 
 
 @RDsl
