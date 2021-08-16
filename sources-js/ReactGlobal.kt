@@ -7,12 +7,18 @@ import kotlin.js.Promise
 import kotlin.reflect.*
 
 
-public external interface React
+public external interface ReactGlobal
+
+
+@Deprecated(message = "Use `React`.", replaceWith = ReplaceWith("React"), level = DeprecationLevel.WARNING)
+@RDsl
+public inline val react: ReactGlobal
+	get() = 0.unsafeCast<ReactGlobal>()
 
 
 @RDsl
-public inline val react: React
-	get() = 0.unsafeCast<React>()
+public inline val React: ReactGlobal
+	get() = 0.unsafeCast<ReactGlobal>()
 
 
 @RDsl
@@ -22,7 +28,7 @@ public inline val tags: RTags
 
 
 @RDsl
-public inline fun React.component(
+public inline fun ReactGlobal.component(
 	memo: Boolean = true,
 	crossinline render: RBuilder.WithHooks.() -> Unit,
 ): RComponent.Delegate<Unit> =
@@ -30,7 +36,7 @@ public inline fun React.component(
 
 
 @RDsl
-public inline fun React.component(
+public inline fun ReactGlobal.component(
 	name: String?,
 	memo: Boolean = true,
 	crossinline render: RBuilder.WithHooks.() -> Unit,
@@ -40,7 +46,7 @@ public inline fun React.component(
 
 @OptIn(RMemoWithChildren::class)
 @RDsl
-public inline fun <Props : Any> React.component(
+public inline fun <Props : Any> ReactGlobal.component(
 	memo: Boolean = true,
 	crossinline render: RBuilder.WithHooks.(props: Props) -> Unit,
 ): RComponent.Delegate<Props> =
@@ -49,7 +55,7 @@ public inline fun <Props : Any> React.component(
 
 @OptIn(RMemoWithChildren::class)
 @RDsl
-public inline fun <Props : Any> React.component(
+public inline fun <Props : Any> ReactGlobal.component(
 	name: String?,
 	memo: Boolean = true,
 	crossinline render: RBuilder.WithHooks.(props: Props) -> Unit,
@@ -68,14 +74,14 @@ public inline fun <Props : Any> React.component(
 
 
 @RDsl
-public inline fun React.componentWithChildren(
+public inline fun ReactGlobal.componentWithChildren(
 	crossinline render: RBuilder.WithHooks.(children: RChildren?) -> Unit,
 ): RComponent.WithChildren.Delegate<Unit> =
 	componentWithChildren(name = null, render = render).unsafeCast<RComponent.WithChildren.Delegate<Unit>>()
 
 
 @RDsl
-public inline fun React.componentWithChildren(
+public inline fun ReactGlobal.componentWithChildren(
 	name: String?,
 	crossinline render: RBuilder.WithHooks.(children: RChildren?) -> Unit,
 ): RComponent.WithChildren<Unit> {
@@ -93,7 +99,7 @@ public inline fun React.componentWithChildren(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : Any> React.componentWithChildren(
+public inline fun <Props : Any> ReactGlobal.componentWithChildren(
 	crossinline render: RBuilder.WithHooks.(props: Props, children: RChildren?) -> Unit,
 ): RComponent.WithChildren.Delegate<Props> =
 	componentWithChildren(name = null, render = render).unsafeCast<RComponent.WithChildren.Delegate<Props>>()
@@ -101,7 +107,7 @@ public inline fun <Props : Any> React.componentWithChildren(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : Any> React.componentWithChildren(
+public inline fun <Props : Any> ReactGlobal.componentWithChildren(
 	name: String?,
 	crossinline render: RBuilder.WithHooks.(props: Props, children: RChildren?) -> Unit,
 ): RComponent.WithChildren<Props> {
@@ -119,65 +125,65 @@ public inline fun <Props : Any> React.componentWithChildren(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Value : Any> React.context(): RContext<Value?> =
+public inline fun <Value : Any> ReactGlobal.context(): RContext<Value?> =
 	context(defaultValue = null)
 
 
 @RDsl
 @Suppress("unused")
-public inline fun <Value> React.context(defaultValue: Value): RContext<Value> =
+public inline fun <Value> ReactGlobal.context(defaultValue: Value): RContext<Value> =
 	external_createContext(defaultValue)
 
 
 @RDsl
 @Suppress("unused")
-public inline fun React.element(content: RBuilder.() -> Unit): RElement? =
+public inline fun ReactGlobal.element(content: RBuilder.() -> Unit): RElement? =
 	element(RElementBuilder().apply(content).elements)
 
 
 @RDsl
 @Suppress("unused")
-public inline fun React.element(elements: Array<out RElement?>?): RElement? =
+public inline fun ReactGlobal.element(elements: Array<out RElement?>?): RElement? =
 	elements?.let(::element)
 
 
 @RDsl
 @Suppress("unused")
-public inline fun React.element(elements: Array<out RElement?>): RElement? =
+public inline fun ReactGlobal.element(elements: Array<out RElement?>): RElement? =
 	react_element(elements)
 
 
 @RDsl
 @Suppress("unused")
-public inline fun React.element(text: String): RElement =
+public inline fun ReactGlobal.element(text: String): RElement =
 	text.unsafeCast<RElement>()
 
 
 @RDsl
 @Suppress("unused")
-public inline fun React.element(text: String?): RElement? =
+public inline fun ReactGlobal.element(text: String?): RElement? =
 	text.unsafeCast<RElement?>()
 
 
 @RDsl
-public inline fun React.element(component: RComponent<Unit>, key: String? = null): RElement? =
+public inline fun ReactGlobal.element(component: RComponent<Unit>, key: String? = null): RElement? =
 	element(component = component, props = Unit, key = key)
 
 
 @RDsl
-public inline fun React.element(component: RComponent.WithChildren<Unit>, key: String? = null, content: RBuilder.() -> Unit): RElement? =
+public inline fun ReactGlobal.element(component: RComponent.WithChildren<Unit>, key: String? = null, content: RBuilder.() -> Unit): RElement? =
 	element(component = component, props = Unit, key = key, content = content)
 
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : Any> React.element(component: RComponent<Props>, props: Props, key: String? = null): RElement? =
+public inline fun <Props : Any> ReactGlobal.element(component: RComponent<Props>, props: Props, key: String? = null): RElement? =
 	element(factory = component.asFactory(), props = RComponentProps(props), key = key)
 
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : Any> React.element(
+public inline fun <Props : Any> ReactGlobal.element(
 	component: RComponent.WithChildren<Props>,
 	props: Props,
 	key: String? = null,
@@ -188,7 +194,7 @@ public inline fun <Props : Any> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun React.element(
+public inline fun ReactGlobal.element(
 	factoryClass: KClass<out RElementFactoryClass<in RProps.WithChildren>>,
 	key: String? = null,
 	ref: RMutableRef<*>? = null,
@@ -198,7 +204,7 @@ public inline fun React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun React.element(
+public inline fun ReactGlobal.element(
 	factoryClass: KClass<out RElementFactoryClass<RProps.WithChildren>>,
 	key: String? = null,
 	ref: RMutableRef<*>? = null,
@@ -209,7 +215,7 @@ public inline fun React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RProps> React.element(
+public inline fun <Props : RProps> ReactGlobal.element(
 	factoryClass: KClass<out RElementFactoryClass<Props>>,
 	key: String? = null,
 	ref: RMutableRef<*>? = null,
@@ -220,7 +226,7 @@ public inline fun <Props : RProps> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun React.element(
+public inline fun ReactGlobal.element(
 	factory: RElementFactory<in RProps.WithChildren>,
 	key: String? = null,
 	ref: RMutableRef<*>? = null,
@@ -237,7 +243,7 @@ public inline fun React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun React.element(
+public inline fun ReactGlobal.element(
 	factory: RElementFactory<RProps.WithChildren>,
 	key: String? = null,
 	ref: RMutableRef<*>? = null,
@@ -256,7 +262,7 @@ public inline fun React.element(
 // TODO Builder shouldn't allow adding children when Props is not subtype of RProps.WithChildren
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RProps> React.element(
+public inline fun <Props : RProps> ReactGlobal.element(
 	factory: RElementFactory<Props>,
 	key: String? = null,
 	ref: RMutableRef<*>? = null,
@@ -276,7 +282,7 @@ public inline fun <Props : RProps> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RProps> React.element(
+public inline fun <Props : RProps> ReactGlobal.element(
 	factory: RElementFactory<Props>,
 	props: Props,
 	key: String? = null,
@@ -295,7 +301,7 @@ public inline fun <Props : RProps> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RProps.WithChildren> React.element(
+public inline fun <Props : RProps.WithChildren> ReactGlobal.element(
 	factory: RElementFactory<Props>,
 	props: Props,
 	key: String? = null,
@@ -323,7 +329,7 @@ public inline fun <Props : RProps.WithChildren> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RTagProps, RefElement : Any> React.element(
+public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
 ) {
 	react_element(tag = tag)
@@ -332,7 +338,7 @@ public inline fun <Props : RTagProps, RefElement : Any> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RTagProps, RefElement : Any> React.element(
+public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
 	noinline content: RBuilder.WithAttrs<Props>.() -> Unit,
 ) {
@@ -342,7 +348,7 @@ public inline fun <Props : RTagProps, RefElement : Any> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RTagProps, RefElement : Any> React.element(
+public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
 	className: String?,
 ) {
@@ -352,7 +358,7 @@ public inline fun <Props : RTagProps, RefElement : Any> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RTagProps, RefElement : Any> React.element(
+public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
 	className: String?,
 	noinline content: RBuilder.WithAttrs<Props>.() -> Unit,
@@ -363,7 +369,7 @@ public inline fun <Props : RTagProps, RefElement : Any> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RTagProps, RefElement : Any> React.element(
+public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
 	vararg className: String?,
 	key: String? = null,
@@ -376,7 +382,7 @@ public inline fun <Props : RTagProps, RefElement : Any> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RTagProps, RefElement : Any> React.element(
+public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
 	className: Array<out String?>,
 	key: String? = null,
@@ -389,13 +395,13 @@ public inline fun <Props : RTagProps, RefElement : Any> React.element(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : RProps> React.lazy(noinline factory: () -> Promise<RElementFactoryModule<Props>>): RElementFactory<Props> =
+public inline fun <Props : RProps> ReactGlobal.lazy(noinline factory: () -> Promise<RElementFactoryModule<Props>>): RElementFactory<Props> =
 	external_lazy(factory)
 
 
 @RDsl
 @Suppress("unused")
-public inline fun React.lazyComponent(crossinline factory: () -> Promise<RBuilder.() -> Unit>): RComponent<Unit> =
+public inline fun ReactGlobal.lazyComponent(crossinline factory: () -> Promise<RBuilder.() -> Unit>): RComponent<Unit> =
 	lazyComponent<Unit> {
 		factory().then { react.component(name = null, render = it) }
 	}
@@ -403,7 +409,7 @@ public inline fun React.lazyComponent(crossinline factory: () -> Promise<RBuilde
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : Any> React.lazyComponent(crossinline factory: () -> Promise<RComponent<Props>>): RComponent<Props> =
+public inline fun <Props : Any> ReactGlobal.lazyComponent(crossinline factory: () -> Promise<RComponent<Props>>): RComponent<Props> =
 	lazy {
 		factory().then { component ->
 			RElementFactoryModule(component.asFactory())
@@ -413,7 +419,7 @@ public inline fun <Props : Any> React.lazyComponent(crossinline factory: () -> P
 
 @RDsl
 @Suppress("unused")
-public inline fun <Props : Any> React.lazyComponentWithChildren(
+public inline fun <Props : Any> ReactGlobal.lazyComponentWithChildren(
 	crossinline factory: () -> Promise<RComponent.WithChildren<Props>>,
 ): RComponent.WithChildren<Props> =
 	lazy {
@@ -425,7 +431,7 @@ public inline fun <Props : Any> React.lazyComponentWithChildren(
 
 @RDsl
 @Suppress("unused")
-public inline fun <Value : Any> React.ref(): RMutableRef<Value?> =
+public inline fun <Value : Any> ReactGlobal.ref(): RMutableRef<Value?> =
 	external_createRef()
 
 

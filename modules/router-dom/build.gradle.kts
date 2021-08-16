@@ -7,6 +7,7 @@ fluidLibraryModule(description = "FIXME") {
 				api(project(":fluid-react-dom"))
 				api(project(":fluid-react-router"))
 
+				implementation(npm("history", Versions.history))
 				implementation(npm("react-router-dom", Versions.react_router))
 			}
 		}

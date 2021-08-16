@@ -5,32 +5,23 @@ import io.fluidsonic.react.router.external.*
 
 
 @PublishedApi
-internal external interface RRouteProps : RProps.WithChildren {
+internal external interface RRouteProps : RProps {
 
-	var exact: Boolean?
-	var location: RRouterLocation<*>?
+	var caseSensitive: Boolean?
+	var element: RElement?
 	var path: String?
-	var render: (() -> RElement?)?
-	var sensitive: Boolean?
-	var strict: Boolean?
 }
 
 
 @RDsl
 public inline fun RBuilder.Route(
 	path: String,
-	exact: Boolean = true,
-	location: RRouterLocation<*>? = null,
-	sensitive: Boolean = true,
-	strict: Boolean = true,
+	caseSensitive: Boolean? = undefined,
 	crossinline content: RBuilder.() -> Unit,
 ) {
 	ReactRouter_Route::class {
-		attrs.exact = exact
-		location?.let { attrs.location = it }
+		attrs.caseSensitive = caseSensitive
+		attrs.element = react.element(content) // FIXME Render lazy.
 		attrs.path = path
-		attrs.render = { react.element(content) }
-		attrs.sensitive = sensitive
-		attrs.strict = strict
 	}
 }

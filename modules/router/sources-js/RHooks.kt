@@ -2,54 +2,53 @@ package io.fluidsonic.react.router
 
 import io.fluidsonic.react.*
 import io.fluidsonic.react.router.external.*
-import io.fluidsonic.react.router.external.reactRouter_useRouteMatch as reactRouter_useRouteMatch1
-
-
-@RDsl
-public inline fun RHooks.useHistory(): RRouterHistory<*> =
-	useHistory<Any?>()
 
 
 @RDsl
 @Suppress("unused")
-public inline fun <State> RHooks.useHistory(): RRouterHistory<State> =
-	reactRouter_useHistory()
-
-
-@RDsl
-public inline fun RHooks.useLocation(): RRouterLocation<*> =
-	useLocation<Any?>()
-
-
-@RDsl
-@Suppress("unused")
-public inline fun <State> RHooks.useLocation(): RRouterLocation<State> =
-	reactRouter_useLocation()
-
-
-@RDsl
-@Suppress("unused")
-public inline fun <Params : RRouteParams> RHooks.useParams(): Params =
+public inline fun <Params : RRouteParams> RHooks.useRouteParams(): Params =
 	reactRouter_useParams()
 
 
 @RDsl
-@Suppress("unused")
-public inline fun <Params : RRouteParams> RHooks.useRouteMatch(): RRouteMatch<Params> =
-	reactRouter_useRouteMatch1()
-
-
-@RDsl
-public inline fun <Params : RRouteParams> RHooks.useRouteMatch(path: String): RRouteMatch<Params> =
-	useRouteMatch(RRouteOptions(path = path))
-
-
-@RDsl
-public inline fun <Params : RRouteParams> RHooks.useRouteMatch(path: RRoutePathFilter): RRouteMatch<Params> =
-	useRouteMatch(RRouteOptions(path = path))
+public inline fun RHooks.useRouterLocation(): RLocation<*> =
+	useRouterLocation<Any?>()
 
 
 @RDsl
 @Suppress("unused")
-public inline fun <Params : RRouteParams> RHooks.useRouteMatch(options: RRouteOptions): RRouteMatch<Params> =
-	reactRouter_useRouteMatch1(options)
+public inline fun <State> RHooks.useRouterLocation(): RLocation<State> =
+	reactRouter_useLocation()
+
+
+@RDsl
+public inline fun RHooks.useRouterMatch(pattern: String): RPathMatch<RRouteParams>? =
+	useRouterMatch<RRouteParams>(pattern)
+
+
+@RDsl
+public inline fun <Params : RRouteParams> RHooks.useRouterMatch(pattern: String): RPathMatch<Params>? =
+	useRouterMatch<Params>(RPathPattern(path = pattern))
+
+
+@RDsl
+public inline fun RHooks.useRouterMatch(pattern: RPathPattern): RPathMatch<RRouteParams>? =
+	useRouterMatch<RRouteParams>(pattern)
+
+
+@RDsl
+@Suppress("unused")
+public inline fun <Params : RRouteParams> RHooks.useRouterMatch(pattern: RPathPattern): RPathMatch<Params>? =
+	reactRouter_useMatch(pattern)
+
+
+@RDsl
+@Suppress("unused")
+public inline fun RHooks.useRouterNavigate(): RNavigateFunction<*> =
+	useRouterNavigate<Any?>()
+
+
+@RDsl
+@Suppress("unused")
+public inline fun <State> RHooks.useRouterNavigate(): RNavigateFunction<State> =
+	RNavigateFunction(delegate = reactRouter_useNavigate())
