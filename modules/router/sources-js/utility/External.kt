@@ -7,6 +7,11 @@ import io.fluidsonic.react.*
 import io.fluidsonic.react.router.*
 
 
+@JsName("UNSAFE_LocationContext")
+@PublishedApi
+internal external val reactRouter_LocationContext_unsafe: RContext<dynamic>
+
+
 @JsName("matchPath")
 @PublishedApi
 internal external fun <Params : RRouteParams> reactRouter_matchPath(pattern: RPathPattern, pathname: String): RPathMatch<Params>?

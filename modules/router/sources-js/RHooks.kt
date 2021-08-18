@@ -11,6 +11,17 @@ public inline fun <Params : RRouteParams> RHooks.useRouteParams(): Params =
 
 
 @RDsl
+@Suppress("unused")
+public inline fun RHooks.useRouterAction(): RNavigationAction =
+	when (val action = useContext(reactRouter_LocationContext_unsafe).action.unsafeCast<String>()) {
+		"POP" -> RNavigationAction.pop
+		"PUSH" -> RNavigationAction.push
+		"REPLACE" -> RNavigationAction.replace
+		else -> error("Unknown action: $action")
+	}
+
+
+@RDsl
 public inline fun RHooks.useRouterLocation(): RLocation<*> =
 	useRouterLocation<Any?>()
 
