@@ -19,7 +19,7 @@ internal external fun <Params : RRouteParams> reactRouter_matchPath(pattern: RPa
 
 @JsName("matchPath")
 @PublishedApi
-internal external fun reactRouter_resolvePath(to: RPathTo<*>, fromPathname: String): RPath
+internal external fun reactRouter_resolvePath(to: RPathTo, fromPathname: String): RPath
 
 
 @JsName("useLocation")
@@ -35,6 +35,11 @@ internal external fun <Params : RRouteParams> reactRouter_useMatch(pattern: RPat
 @JsName("useNavigate")
 @PublishedApi
 internal external fun <State> reactRouter_useNavigate(): (to: Any, options: RNavigateFunctionOptions<State>?) -> Unit
+
+
+@JsName("useNavigationType")
+@PublishedApi
+internal external fun reactRouter_useNavigationType(): String
 
 
 @JsName("useParams")

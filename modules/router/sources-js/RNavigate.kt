@@ -11,7 +11,7 @@ internal external interface RNavigateProps : RProps {
 
 	var replace: Boolean?
 	var state: Any?
-	var to: RPathTo<*>
+	var to: RPathTo
 }
 
 
@@ -26,7 +26,7 @@ public inline fun RBuilder.Navigate(
 
 @RDsl
 public inline fun RBuilder.Navigate(
-	to: RPathTo<*>,
+	to: RPathTo,
 	replace: Boolean = false,
 	state: Any? = undefined,
 ) {

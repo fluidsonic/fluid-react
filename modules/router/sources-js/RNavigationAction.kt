@@ -1,7 +1,7 @@
 package io.fluidsonic.react.router
 
 
-public enum class RNavigationAction {
+public enum class RNavigationType {
 
 	pop,
 	push,

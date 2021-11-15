@@ -51,8 +51,8 @@ public inline fun ReactRouterGlobal.matchPath(
 
 @RDsl
 @Suppress("unused")
-public inline fun <State> ReactRouterGlobal.resolvePath(
-	to: RPathTo<State>,
+public inline fun ReactRouterGlobal.resolvePath(
+	to: RPathTo,
 	fromPathname: String = "/",
 ): RPath =
 	reactRouter_resolvePath(to = to, fromPathname = fromPathname)

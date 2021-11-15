@@ -12,12 +12,12 @@ public inline fun <Params : RRouteParams> RHooks.useRouteParams(): Params =
 
 @RDsl
 @Suppress("unused")
-public inline fun RHooks.useRouterAction(): RNavigationAction =
-	when (val action = useContext(reactRouter_LocationContext_unsafe).action.unsafeCast<String>()) {
-		"POP" -> RNavigationAction.pop
-		"PUSH" -> RNavigationAction.push
-		"REPLACE" -> RNavigationAction.replace
-		else -> error("Unknown action: $action")
+public inline fun RHooks.useRouterNavigationType(): RNavigationType =
+	when (val type = reactRouter_useNavigationType()) {
+		"POP" -> RNavigationType.pop
+		"PUSH" -> RNavigationType.push
+		"REPLACE" -> RNavigationType.replace
+		else -> error("Unknown action: $type")
 	}
 
 
