@@ -2,8 +2,8 @@ fluid-react
 ===========
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.fluidsonic.react/fluid-react?label=Maven%20Central)](https://search.maven.org/artifact/io.fluidsonic.react/fluid-react)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.4.31%20(JS)-blue.svg)](https://github.com/JetBrains/kotlin/releases/v1.4.31)
-[![React](https://img.shields.io/badge/React-experimental%20(March%2019,%202021)-blue.svg)](https://www.npmjs.com/package/react/v/0.0.0-experimental-af1a4cbf7)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.5.21%20(JS)-blue.svg)](https://github.com/JetBrains/kotlin/releases/v1.5.11)
+[![React](https://img.shields.io/badge/React-experimental%20(November%2015,%202021)-blue.svg)](https://www.npmjs.com/package/react/v/0.0.0-experimental-af1a4cbf7)
 [![#fluid-libraries Slack Channel](https://img.shields.io/badge/slack-%23fluid--libraries-543951.svg?label=Slack)](https://kotlinlang.slack.com/messages/C7UDFSVT2/)
 
 Kotlin/JS wrapper for [React](https://reactjs.org/), [React Router](https://reactrouter.com/) and
@@ -37,11 +37,11 @@ Kotlin/JS wrapper for [React](https://reactjs.org/), [React Router](https://reac
 
 ```kt
 dependencies {
-    implementation("io.fluidsonic.react:fluid-react-dom:0.10.1") // basis module
+    implementation("io.fluidsonic.react:fluid-react-dom:0.12.0") // basis module
 
-    implementation("io.fluidsonic.react:fluid-react-coroutines:0.10.1") // optional coroutine support
-    implementation("io.fluidsonic.react:fluid-react-helmet:0.10.1")     // optional dynamic metadata (react-helmet-async)
-    implementation("io.fluidsonic.react:fluid-react-router-dom:0.10.1") // optional routing (react-router)
+    implementation("io.fluidsonic.react:fluid-react-coroutines:0.12.0") // optional coroutine support
+    implementation("io.fluidsonic.react:fluid-react-helmet:0.12.0")     // optional dynamic metadata (react-helmet-async)
+    implementation("io.fluidsonic.react:fluid-react-router-dom:0.12.0") // optional routing (react-router)
 }
 ```
 
