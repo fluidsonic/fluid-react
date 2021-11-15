@@ -2,7 +2,7 @@ fluid-react
 ===========
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.fluidsonic.react/fluid-react?label=Maven%20Central)](https://search.maven.org/artifact/io.fluidsonic.react/fluid-react)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.5.21%20(JS)-blue.svg)](https://github.com/JetBrains/kotlin/releases/v1.5.11)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.5.21%20(JS)-blue.svg)](https://github.com/JetBrains/kotlin/releases/v1.5.21)
 [![React](https://img.shields.io/badge/React-experimental%20(November%2015,%202021)-blue.svg)](https://www.npmjs.com/package/react/v/0.0.0-experimental-af1a4cbf7)
 [![#fluid-libraries Slack Channel](https://img.shields.io/badge/slack-%23fluid--libraries-543951.svg?label=Slack)](https://kotlinlang.slack.com/messages/C7UDFSVT2/)
 
