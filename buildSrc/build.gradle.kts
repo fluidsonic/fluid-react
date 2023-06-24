@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.plugin.*
 
 plugins {
-	kotlin("jvm") version "1.5.21"
+	kotlin("jvm") version "1.8.22"
 }
 
 repositories {
