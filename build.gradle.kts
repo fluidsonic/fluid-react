@@ -5,7 +5,7 @@ plugins {
 	id("com.github.turansky.kfc.latest-webpack") version "4.88.0" // https://youtrack.jetbrains.com/issue/KT-49124
 }
 
-fluidLibrary(name = "react", version = "0.12.0") {
+fluidLibrary(name = "react", version = "0.13.0") {
 	allModules {
 		targets {
 			js {

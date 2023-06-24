@@ -37,11 +37,11 @@ Kotlin/JS wrapper for [React](https://reactjs.org/), [React Router](https://reac
 
 ```kt
 dependencies {
-    implementation("io.fluidsonic.react:fluid-react-dom:0.12.0") // basis module
+	implementation("io.fluidsonic.react:fluid-react-dom:0.13.0") // basis module
 
-    implementation("io.fluidsonic.react:fluid-react-coroutines:0.12.0") // optional coroutine support
-    implementation("io.fluidsonic.react:fluid-react-helmet:0.12.0")     // optional dynamic metadata (react-helmet-async)
-    implementation("io.fluidsonic.react:fluid-react-router-dom:0.12.0") // optional routing (react-router)
+	implementation("io.fluidsonic.react:fluid-react-coroutines:0.13.0") // optional coroutine support
+	implementation("io.fluidsonic.react:fluid-react-helmet:0.13.0")     // optional dynamic metadata (react-helmet-async)
+	implementation("io.fluidsonic.react:fluid-react-router-dom:0.13.0") // optional routing (react-router)
 }
 ```
 
@@ -52,39 +52,39 @@ import io.fluidsonic.react.*
 import kotlinx.browser.*
 
 fun main() {
-    val body = checkNotNull(document.body)
-    val container = document.createElement("div").also(body::appendChild)
+	val body = checkNotNull(document.body)
+	val container = document.createElement("div").also(body::appendChild)
 
-    react.createRoot(container).render {
-        +"Hello world"
+	react.createRoot(container).render {
+		+"Hello world"
 
-        EmojiContainer(EmojiContainerProps("😍")) { strong { +"cool" } }
-    }
+		EmojiContainer(EmojiContainerProps("😍")) { strong { +"cool" } }
+	}
 }
 
 val EmojiContainer by react.componentWithChildren { props: EmojiContainerProps, children ->
-    var count by useState(3)
+	var count by useState(3)
 
-    useEffect(count) {
-        val timerId = window.setTimeout({ count += 1 }, 2000)
+	useEffect(count) {
+		val timerId = window.setTimeout({ count += 1 }, 2000)
 
-        cleanup { window.clearTimeout(timerId) }
-    }
+		cleanup { window.clearTimeout(timerId) }
+	}
 
-    h1 { +"Your emoji, $count times 🎉" }
-    button {
-        attrs.onClick = { count += 1 }
-        +"Add one"
-    }
-    ol {
-        repeat(count) {
-            li {
-                +props.emoji
-                +" "
-                children()
-            }
-        }
-    }
+	h1 { +"Your emoji, $count times 🎉" }
+	button {
+		attrs.onClick = { count += 1 }
+		+"Add one"
+	}
+	ol {
+		repeat(count) {
+			li {
+				+props.emoji
+				+" "
+				children()
+			}
+		}
+	}
 }
 
 class EmojiContainerProps(val emoji: String)
