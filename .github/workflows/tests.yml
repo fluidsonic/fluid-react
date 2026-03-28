@@ -17,4 +17,4 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v5
 
-      - run: ./gradlew test
+      - run: ./gradlew jsTest

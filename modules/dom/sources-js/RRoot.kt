@@ -11,8 +11,7 @@ public external interface RRoot {
 
 /** Renders the given [content] into this root. */
 public inline fun RRoot.render(
-	noinline callback: (() -> Unit)? = null,
 	content: RBuilder.() -> Unit,
 ) {
-	render(element = React.element(content), callback = callback)
+	render(element = React.element(content))
 }

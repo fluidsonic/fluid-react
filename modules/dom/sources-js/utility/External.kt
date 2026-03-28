@@ -14,19 +14,3 @@ internal external fun external_createPortal(
 	container: Element,
 	key: String? = definedExternally,
 ): RElement
-
-
-@JsName("createRoot")
-@PublishedApi
-internal external fun external_createRoot(
-	container: Element,
-): RRoot
-
-
-@JsName("render")
-@PublishedApi
-internal external fun external_render(
-	element: RElement?,
-	container: Element,
-	callback: (() -> Unit)? = definedExternally,
-)

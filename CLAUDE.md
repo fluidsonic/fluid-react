@@ -5,7 +5,7 @@ Kotlin/JS wrapper library for React, React Router, and react-helmet-async.
 ## Commands
 
 - Build: `./gradlew assemble`
-- Test: `./gradlew test`
+- Test: `./gradlew jsTest`
 - Check dependencies: `./gradlew dependencyUpdates`
 - Update yarn.lock: `./gradlew kotlinUpgradeYarnLock`
 - Run playground: `./gradlew :fluid-react-playground:jsBrowserDevelopmentRun`
