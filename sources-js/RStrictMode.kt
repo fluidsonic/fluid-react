@@ -3,7 +3,7 @@ package io.fluidsonic.react
 import io.fluidsonic.react.external.*
 
 
-@RDsl
+/** Wraps content in React's `StrictMode` for development warnings. No-op in production builds. */
 public inline fun RBuilder.StrictMode(content: RBuilder.() -> Unit) {
 	if (isProduction())
 		content()

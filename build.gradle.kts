@@ -1,11 +1,12 @@
+@file:Suppress("DEPRECATION")
+
 import io.fluidsonic.gradle.*
 
 plugins {
-	id("io.fluidsonic.gradle") version "1.3.2"
-	id("com.github.turansky.kfc.latest-webpack") version "4.88.0" // https://youtrack.jetbrains.com/issue/KT-49124
+	id("io.fluidsonic.gradle") version "3.0.0"
 }
 
-fluidLibrary(name = "react", version = "0.13.0") {
+fluidLibrary(name = "react", version = "0.14.0") {
 	allModules {
 		targets {
 			js {

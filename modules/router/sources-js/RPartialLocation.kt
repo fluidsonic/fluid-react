@@ -5,6 +5,7 @@ package io.fluidsonic.react.router
 import io.fluidsonic.react.*
 
 
+/** A partial location that may include [key] and [State]. Wraps React Router's `Partial<Location>`. */
 public external interface RPartialLocation<out State> : RPartialPath {
 
 	public val key: String?
@@ -12,6 +13,7 @@ public external interface RPartialLocation<out State> : RPartialPath {
 }
 
 
+/** Creates a partial location with typed [State]. */
 public inline fun <State> RPartialLocation(
 	pathname: String? = undefined,
 	search: String? = undefined,
@@ -28,6 +30,7 @@ public inline fun <State> RPartialLocation(
 	}.unsafeCast<RPartialLocation<State>>()
 
 
+/** Creates a partial location with no state. */
 public inline fun RPartialLocation(
 	pathname: String? = undefined,
 	search: String? = undefined,

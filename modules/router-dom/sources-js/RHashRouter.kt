@@ -12,7 +12,7 @@ internal external interface RHashRouterProps : RProps.WithChildren {
 }
 
 
-@RDsl
+/** Renders a hash-based router using the URL hash. Wraps React Router DOM's `HashRouter`. */
 public inline fun RBuilder.HashRouter(
 	window: Window? = undefined,
 	content: RBuilder.() -> Unit,

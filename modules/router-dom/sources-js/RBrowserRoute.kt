@@ -12,7 +12,7 @@ internal external interface RBrowserRouterProps : RProps.WithChildren {
 }
 
 
-@RDsl
+/** Renders a browser-based router using the HTML5 history API. Wraps React Router DOM's `BrowserRouter`. */
 public inline fun RBuilder.BrowserRouter(
 	window: Window? = undefined,
 	content: RBuilder.() -> Unit,

@@ -11,7 +11,7 @@ internal external interface RSuspenseProps : RProps.WithChildren {
 }
 
 
-@RDsl
+/** Wraps content in React's `Suspense`, showing the [fallback] element while children are loading. */
 public inline fun RBuilder.Suspense(
 	fallback: RElement?,
 	key: String? = null,

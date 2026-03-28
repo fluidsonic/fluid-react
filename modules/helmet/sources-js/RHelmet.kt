@@ -16,6 +16,7 @@ internal external interface RHelmetProps : RProps.WithChildren {
 }
 
 
+/** Contains arrays of DOM elements added or removed by Helmet. */
 public external interface RHelmetTags {
 
 	public val baseTag: Array<out HTMLBaseElement>
@@ -27,7 +28,7 @@ public external interface RHelmetTags {
 }
 
 
-@RDsl
+/** Manages the document head declaratively. Wraps `react-helmet-async`'s `Helmet`. */
 public inline fun RBuilder.Helmet(
 	defaultTitle: String? = null,
 	defer: Boolean? = null,

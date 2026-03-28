@@ -1,20 +1,15 @@
-import org.jetbrains.kotlin.gradle.plugin.*
-
 plugins {
-	kotlin("jvm") version "1.8.22"
+	`kotlin-dsl`
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 	gradlePluginPortal()
 }
 
 sourceSets {
-	getByName("main") {
+	main {
 		kotlin.srcDirs("sources")
 	}
 }
-
-
-val SourceSet.kotlin
-	get() = withConvention(KotlinSourceSet::class) { kotlin }

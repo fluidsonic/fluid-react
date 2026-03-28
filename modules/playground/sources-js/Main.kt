@@ -7,7 +7,7 @@ fun main() {
 	val body = checkNotNull(document.body)
 	val container = document.createElement("div").also(body::appendChild)
 
-	react.createRoot(container = container).render {
+	React.createRoot(container = container).render {
 		StrictMode {
 			HelmetProvider {
 				Helmet(defaultTitle = "Playground", titleTemplate = "%s - Playground")

@@ -3,15 +3,16 @@ package io.fluidsonic.react
 import kotlinx.coroutines.*
 
 
-private val Context = react.context(GlobalScope + Dispatchers.Main.immediate)
+@OptIn(kotlinx.coroutines.DelicateCoroutinesApi::class)
+private val Context = React.context(GlobalScope + Dispatchers.Main.immediate)
 
 
-@RDsl
+/** Provides a [CoroutineScope] to child components via React context. */
 public fun RBuilder.CoroutineScope(scope: CoroutineScope, content: RBuilder.() -> Unit) {
 	Context.Provider(scope, content = content)
 }
 
 
-@RDsl
+/** Returns the nearest [CoroutineScope] from the context hierarchy. */
 public fun RHooks.useCoroutineScope(): CoroutineScope =
 	useContext(Context)

@@ -1,3 +1,11 @@
+pluginManagement {
+	repositories {
+		mavenLocal()
+		gradlePluginPortal()
+		mavenCentral()
+	}
+}
+
 rootProject.name = "fluid-react"
 
 file("modules")

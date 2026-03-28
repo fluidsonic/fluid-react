@@ -12,7 +12,7 @@ internal external interface RMemoryRouterProps : RProps.WithChildren {
 }
 
 
-@RDsl
+/** Renders an in-memory router for testing or non-browser environments. Wraps React Router's `MemoryRouter`. */
 public inline fun RBuilder.MemoryRouter(
 	initialEntries: Array<out RPathTo>? = undefined,
 	initialIndex: Int? = undefined,

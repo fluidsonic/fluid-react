@@ -1,6 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 import io.fluidsonic.gradle.*
 
-fluidLibraryModule(description = "FIXME") {
+fluidLibraryModule(description = "React DOM bindings for fluid-react") {
 	targets {
 		js {
 			dependencies {

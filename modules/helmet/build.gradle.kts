@@ -1,6 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 import io.fluidsonic.gradle.*
 
-fluidLibraryModule(description = "FIXME") {
+fluidLibraryModule(description = "React Helmet Async bindings for fluid-react") {
 	targets {
 		js {
 			dependencies {

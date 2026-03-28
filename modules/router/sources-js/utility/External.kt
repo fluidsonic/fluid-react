@@ -48,16 +48,20 @@ internal external fun <Params : RRouteParams> reactRouter_useParams(): Params
 
 
 @JsName("MemoryRouter")
+@PublishedApi
 internal external class ReactRouter_MemoryRouter : RElementFactoryClass<RMemoryRouterProps>
 
 
 @JsName("Navigate")
+@PublishedApi
 internal external class ReactRouter_Redirect : RElementFactoryClass<RNavigateProps>
 
 
 @JsName("Route")
+@PublishedApi
 internal external class ReactRouter_Route : RElementFactoryClass<RRouteProps>
 
 
 @JsName("Routes")
+@PublishedApi
 internal external class ReactRouter_Routes : RElementFactoryClass<RRoutesProps>

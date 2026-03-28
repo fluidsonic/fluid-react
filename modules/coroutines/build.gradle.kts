@@ -1,6 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 import io.fluidsonic.gradle.*
 
-fluidLibraryModule(description = "FIXME") {
+fluidLibraryModule(description = "Coroutine support for fluid-react") {
 	targets {
 		js {
 			dependencies {

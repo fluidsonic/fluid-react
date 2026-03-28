@@ -5,6 +5,7 @@ import org.w3c.dom.clipboard.*
 import org.w3c.dom.events.*
 
 
+/** Base props interface for HTML elements, providing common event handlers and attributes. */
 public external interface HTMLProps : DOMProps {
 
 	public var onBlur: ((event: FocusEvent) -> Unit)?
@@ -17,11 +18,12 @@ public external interface HTMLProps : DOMProps {
 	public var onMouseMove: ((event: MouseEvent) -> Unit)?
 	public var onPaste: ((event: ClipboardEvent) -> Unit)?
 	public var onScroll: ((event: UIEvent) -> Unit)?
-	public var onSubmit: ((event: KeyboardEvent) -> Unit)? // TODO SubmitEvent
+	public var onSubmit: ((event: Event) -> Unit)?
 	public var onTouchStart: ((event: TouchEvent) -> Unit)?
 	public var onTransitionEnd: ((event: TransitionEvent) -> Unit)?
 	public var tabIndex: Int?
 }
 
 
+/** An HTML tag that produces elements with specific [Props] and an [HTMLElement] ref type. */
 public external interface HTMLTag<Props : HTMLProps, RefElement : HTMLElement> : DOMTag<Props, RefElement>

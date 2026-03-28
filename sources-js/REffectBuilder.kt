@@ -3,6 +3,7 @@
 package io.fluidsonic.react
 
 
+/** Builder scope for React effects, allowing registration of cleanup callbacks. */
 public external interface REffectBuilder
 
 
@@ -24,7 +25,7 @@ internal inline fun buildEffect(noinline effect: REffectBuilder.() -> Unit): () 
 	}
 
 
-@RDsl
+/** Registers a [callback] to be invoked when the effect is cleaned up. */
 public inline fun REffectBuilder.cleanup(noinline callback: () -> Unit) {
 	unsafeCast<Array<() -> Unit>>().push(callback)
 }

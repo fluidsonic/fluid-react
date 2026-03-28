@@ -13,7 +13,7 @@ internal external interface RRouteProps : RProps {
 }
 
 
-@RDsl
+/** Defines a route that renders [content] when the [path] matches. Wraps React Router's `Route`. */
 public inline fun RBuilder.Route(
 	path: String,
 	caseSensitive: Boolean? = undefined,
@@ -21,7 +21,7 @@ public inline fun RBuilder.Route(
 ) {
 	ReactRouter_Route::class {
 		attrs.caseSensitive = caseSensitive
-		attrs.element = react.element(content) // FIXME Render lazy.
+		attrs.element = React.element(content) // TODO Consider rendering lazily using React.lazy().
 		attrs.path = path
 	}
 }

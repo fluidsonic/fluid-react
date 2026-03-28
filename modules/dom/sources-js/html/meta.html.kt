@@ -3,6 +3,7 @@ package io.fluidsonic.react
 import org.w3c.dom.*
 
 
+/** Props for the HTML `<meta>` element. */
 public external interface HTMLMetaProps : HTMLProps {
 
 	public var charSet: String?
@@ -13,7 +14,7 @@ public external interface HTMLMetaProps : HTMLProps {
 }
 
 
-@RDsl
+/** The HTML `<meta>` tag. */
 @Suppress("unused")
 public inline val RTags.meta: HTMLTag<HTMLMetaProps, HTMLMetaElement>
 	get() = tagOf("meta")

@@ -15,7 +15,7 @@ internal external interface RNavigateProps : RProps {
 }
 
 
-@RDsl
+/** Renders a navigation element that redirects to the given path. Wraps React Router's `Navigate`. */
 public inline fun RBuilder.Navigate(
 	to: String,
 	replace: Boolean = false,
@@ -24,7 +24,7 @@ public inline fun RBuilder.Navigate(
 }
 
 
-@RDsl
+/** Renders a navigation element that redirects to the given [to] path with optional [state]. */
 public inline fun RBuilder.Navigate(
 	to: RPathTo,
 	replace: Boolean = false,

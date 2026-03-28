@@ -3,6 +3,7 @@ package io.fluidsonic.react
 import org.w3c.dom.*
 
 
+/** Props for the HTML `<textarea>` element. */
 public external interface HTMLTextAreaProps : HTMLProps {
 
 	public var autoCapitalize: String?
@@ -22,7 +23,7 @@ public external interface HTMLTextAreaProps : HTMLProps {
 }
 
 
-@RDsl
+/** The HTML `<textarea>` tag. */
 @Suppress("unused")
 public inline val RTags.textarea: HTMLTag<HTMLTextAreaProps, HTMLTextAreaElement>
 	get() = tagOf("textarea")

@@ -3,7 +3,7 @@ import io.fluidsonic.react.helmet.*
 import kotlinx.browser.*
 
 
-val EmojiContainer by react.componentWithChildren { props: EmojiContainerProps, children ->
+val EmojiContainer by React.componentWithChildren { props: EmojiContainerProps, children ->
 	var count by useState(3)
 
 	useEffect(count) {

@@ -1,6 +1,13 @@
-import io.fluidsonic.gradle.*
+@file:Suppress("DEPRECATION")
 
-fluidLibraryModule(description = "FIXME") {
+import io.fluidsonic.gradle.*
+import org.gradle.api.file.DuplicatesStrategy
+
+// HtmlWebpackPlugin in webpack.config.d/index.js also produces index.html,
+// which duplicates the one copied from resources-js/.
+tasks.withType<AbstractCopyTask> { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
+
+fluidLibraryModule(description = "Demo & playground app for fluid-react") {
 	withoutPublishing()
 
 	language {
@@ -15,7 +22,7 @@ fluidLibraryModule(description = "FIXME") {
 				api(project(":fluid-react-helmet"))
 				api(project(":fluid-react-router-dom"))
 
-				implementation(devNpm("html-webpack-plugin", "~5.3.2"))
+				implementation(devNpm("html-webpack-plugin", Versions.html_webpack_plugin))
 			}
 
 			custom {

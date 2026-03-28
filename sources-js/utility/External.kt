@@ -4,6 +4,7 @@ package io.fluidsonic.react.external
 
 import io.fluidsonic.react.*
 import kotlin.js.Promise
+import kotlin.js.definedExternally
 
 
 @JsName("createContext")

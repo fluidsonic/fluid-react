@@ -11,7 +11,7 @@ internal external interface RHelmetProviderProps : RProps.WithChildren {
 }
 
 
-@RDsl
+/** Provides context for Helmet components. Must wrap all `Helmet` usage. Wraps `react-helmet-async`'s `HelmetProvider`. */
 public inline fun RBuilder.HelmetProvider(
 	context: dynamic = null,
 	content: RBuilder.() -> Unit,

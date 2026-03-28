@@ -6,11 +6,12 @@ import io.fluidsonic.react.external.*
 import kotlin.contracts.*
 
 
+/** Marker interface for scopes where React hooks can be called. */
 @RDsl
 public external interface RHooks
 
 
-@RDsl
+/** Memoizes a [callback] function, only recreating it when [dependencies] change. Wraps React's `useCallback`. */
 public inline fun <Callback : Function<*>?> RHooks.useCallback(
 	vararg dependencies: Any?,
 	callback: Callback,
@@ -20,13 +21,13 @@ public inline fun <Callback : Function<*>?> RHooks.useCallback(
 	}
 
 
-@RDsl
+/** Reads the current value from the given [context]. Wraps React's `useContext`. */
 @Suppress("unused")
 public inline fun <Value> RHooks.useContext(context: RContext<Value>): Value =
 	external_useContext(context)
 
 
-@RDsl
+/** Displays a [value] in React DevTools for the current hook. No-op in production builds. Wraps React's `useDebugValue`. */
 @Suppress("unused")
 public inline fun RHooks.useDebugValue(value: Any?) {
 	if (!isProduction())
@@ -34,7 +35,7 @@ public inline fun RHooks.useDebugValue(value: Any?) {
 }
 
 
-@RDsl
+/** Runs the [effect] after every render. Wraps React's `useEffect`. */
 public inline fun RHooks.useEffect(
 	noinline effect: REffectBuilder.() -> Unit,
 ) {
@@ -45,7 +46,7 @@ public inline fun RHooks.useEffect(
 }
 
 
-@RDsl
+/** Runs the [effect] when [dependencies] change. Wraps React's `useEffect`. */
 public inline fun RHooks.useEffect(
 	vararg dependencies: Any?,
 	noinline effect: REffectBuilder.() -> Unit,
@@ -61,7 +62,7 @@ public inline fun RHooks.useEffect(
 }
 
 
-@RDsl
+/** Runs the [effect] synchronously after DOM mutations. Wraps React's `useLayoutEffect`. */
 public inline fun RHooks.useLayoutEffect(
 	noinline effect: REffectBuilder.() -> Unit,
 ) {
@@ -72,7 +73,7 @@ public inline fun RHooks.useLayoutEffect(
 }
 
 
-@RDsl
+/** Runs the [effect] synchronously after DOM mutations when [dependencies] change. Wraps React's `useLayoutEffect`. */
 public inline fun RHooks.useLayoutEffect(
 	vararg dependencies: Any?,
 	noinline effect: REffectBuilder.() -> Unit,
@@ -88,7 +89,7 @@ public inline fun RHooks.useLayoutEffect(
 }
 
 
-@RDsl
+/** Memoizes the result of [createValue], recomputing only on first render. Wraps React's `useMemo`. */
 public inline fun <Value> RHooks.useMemo(
 	createValue: () -> Value,
 ): Value {
@@ -104,7 +105,7 @@ public inline fun <Value> RHooks.useMemo(
 }
 
 
-@RDsl
+/** Memoizes the result of [createValue], recomputing only when [dependencies] change. Wraps React's `useMemo`. */
 public inline fun <Value> RHooks.useMemo(
 	vararg dependencies: Any?,
 	createValue: () -> Value,
@@ -126,64 +127,63 @@ public inline fun <Value> RHooks.useMemo(
 }
 
 
-@RDsl
+/** Placeholder hook that maintains hook call order when a callback is conditionally unused. */
 public inline fun RHooks.useNoCallback(): Nothing? {
 	useCallback(noValue, callback = null)
 	return null
 }
 
 
-@RDsl
+/** Placeholder hook that maintains hook call order when an effect is conditionally unused. */
 public inline fun RHooks.useNoEffect() {
 	useEffect(noValue) {}
 }
 
 
-@RDsl
+/** Placeholder hook that maintains hook call order when a layout effect is conditionally unused. */
 public inline fun RHooks.useNoLayoutEffect() {
 	useLayoutEffect(noValue) {}
 }
 
 
-@RDsl
+/** Placeholder hook that maintains hook call order when a ref is conditionally unused. */
 public inline fun RHooks.useNoRef(): Nothing? {
 	useRef(null)
 	return null
 }
 
 
-@RDsl
+/** Creates a mutable ref initialized to `null`. Wraps React's `useRef`. */
 @Suppress("unused")
 public inline fun <Value : Any> RHooks.useRef(): RMutableRef<Value?> =
 	useRef(null)
 
 
-@RDsl
+/** Creates a mutable ref initialized to [initialValue]. Wraps React's `useRef`. */
 @Suppress("unused")
 public inline fun <Value> RHooks.useRef(initialValue: Value): RMutableRef<Value> =
 	external_useRef(initialValue)
 
 
-@RDsl
+/** Creates state initialized to [initialValue]. Wraps React's `useState`. */
 @Suppress("unused")
 public inline fun <Value> RHooks.useState(initialValue: Value): RState<Value> =
 	external_useState(initialValue)
 
 
-@RDsl
+/** Creates nullable state initialized to `null`. Wraps React's `useState`. */
 @Suppress("unused")
 public inline fun <Value : Any> RHooks.useState(): RState<Value?> =
 	external_useState(null)
 
 
-@RDsl
+/** Creates state initialized lazily by [initialValue]. Wraps React's `useState` with lazy initialization. */
 @Suppress("unused")
 public inline fun <Value> RHooks.useState(noinline initialValue: () -> Value): RState<Value> =
 	external_useState(initialValue)
 
 
 @Deprecated(message = "You can already use hooks in this scope.", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith("nothing"))
-@RDsl
 @Suppress("unused")
 public fun RHooks.useHooks(): Unit = Unit
 
@@ -194,7 +194,6 @@ public fun RHooks.useHooks(): Unit = Unit
 	replaceWith = ReplaceWith("nothing")
 )
 @OptIn(ExperimentalContracts::class)
-@RDsl
 @Suppress("CANNOT_CHECK_FOR_EXTERNAL_INTERFACE")
 public inline fun RBuilder.useHooks() {
 	contract {

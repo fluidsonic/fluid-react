@@ -1,6 +1,7 @@
 package io.fluidsonic.react
 
 
+/** A React context that holds a [Value]. Wraps `React.Context`. */
 @Suppress("PropertyName")
 public external interface RContext<Value> {
 
@@ -9,6 +10,7 @@ public external interface RContext<Value> {
 }
 
 
+/** A React context consumer component. Wraps `Context.Consumer`. */
 public external interface RConsumer<Value> : RElementFactory<RConsumer.Props<Value>> {
 
 	public interface Props<Value> : RProps {
@@ -18,6 +20,7 @@ public external interface RConsumer<Value> : RElementFactory<RConsumer.Props<Val
 }
 
 
+/** A React context provider component. Wraps `Context.Provider`. */
 public external interface RProvider<Value> : RElementFactory<RProvider.Props<Value>> {
 
 	public interface Props<Value> : RProps.WithChildren {

@@ -30,7 +30,3 @@ internal external fun external_render(
 	container: Element,
 	callback: (() -> Unit)? = definedExternally,
 )
-
-// FIXME
-//@JsName("unstable_batchedUpdates")
-//external fun unstable_batchedUpdates(block: () -> Unit)

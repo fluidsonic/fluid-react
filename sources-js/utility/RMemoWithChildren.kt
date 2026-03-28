@@ -1,6 +1,7 @@
 package io.fluidsonic.react
 
 
+/** Opt-in annotation warning that memoization of components with children rarely works as expected. */
 @RequiresOptIn(
 	level = RequiresOptIn.Level.WARNING,
 	message = "Memoization of components with children rarely works as expected. See https://github.com/facebook/react/issues/14463 for further information."

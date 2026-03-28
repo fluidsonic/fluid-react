@@ -3,6 +3,7 @@ package io.fluidsonic.react.router
 import io.fluidsonic.react.*
 
 
+/** A partial URL path with optional [pathname], [search], and [hash] components. */
 public external interface RPartialPath {
 
 	public val hash: String?
@@ -11,6 +12,7 @@ public external interface RPartialPath {
 }
 
 
+/** Creates a partial path with optional URL components. */
 @Suppress("NOTHING_TO_INLINE")
 public inline fun RPartialPath(
 	pathname: String? = undefined,

@@ -7,54 +7,54 @@ import kotlin.js.Promise
 import kotlin.reflect.*
 
 
+/** Main API entry point for React operations such as creating components, elements, and contexts. */
 public external interface ReactGlobal
 
 
 @Deprecated(message = "Use `React`.", replaceWith = ReplaceWith("React"), level = DeprecationLevel.WARNING)
-@RDsl
 public inline val react: ReactGlobal
 	get() = 0.unsafeCast<ReactGlobal>()
 
 
-@RDsl
+/** Main API entry point for React operations. */
 public inline val React: ReactGlobal
 	get() = 0.unsafeCast<ReactGlobal>()
 
 
-@RDsl
+/** Entry point for accessing HTML and SVG tag factories. */
 @Suppress("unused")
 public inline val tags: RTags
 	get() = 0.unsafeCast<RTags>()
 
 
-@RDsl
+/** Creates a component delegate with no props. Wraps `React.memo()` by default. */
 public inline fun ReactGlobal.component(
 	memo: Boolean = true,
-	crossinline render: RBuilder.WithHooks.() -> Unit,
+	noinline render: RBuilder.WithHooks.() -> Unit,
 ): RComponent.Delegate<Unit> =
 	component(name = null, memo = memo, render = render).unsafeCast<RComponent.Delegate<Unit>>()
 
 
-@RDsl
+/** Creates a named component with no props. Wraps `React.memo()` by default. */
 public inline fun ReactGlobal.component(
 	name: String?,
 	memo: Boolean = true,
-	crossinline render: RBuilder.WithHooks.() -> Unit,
+	noinline render: RBuilder.WithHooks.() -> Unit,
 ): RComponent<Unit> =
 	component(name = name, memo = memo, render = render.unsafeCast<RBuilder.WithHooks.(props: Unit) -> Unit>())
 
 
+/** Creates a component delegate with typed [Props]. Wraps `React.memo()` by default. */
 @OptIn(RMemoWithChildren::class)
-@RDsl
 public inline fun <Props : Any> ReactGlobal.component(
 	memo: Boolean = true,
-	crossinline render: RBuilder.WithHooks.(props: Props) -> Unit,
+	noinline render: RBuilder.WithHooks.(props: Props) -> Unit,
 ): RComponent.Delegate<Props> =
 	component(name = null, memo = memo, render = render).unsafeCast<RComponent.Delegate<Props>>()
 
 
+/** Creates a named component with typed [Props]. Wraps `React.memo()` by default. */
 @OptIn(RMemoWithChildren::class)
-@RDsl
 public inline fun <Props : Any> ReactGlobal.component(
 	name: String?,
 	memo: Boolean = true,
@@ -73,14 +73,14 @@ public inline fun <Props : Any> ReactGlobal.component(
 }
 
 
-@RDsl
+/** Creates a component delegate with no props that accepts children. */
 public inline fun ReactGlobal.componentWithChildren(
-	crossinline render: RBuilder.WithHooks.(children: RChildren?) -> Unit,
+	noinline render: RBuilder.WithHooks.(children: RChildren?) -> Unit,
 ): RComponent.WithChildren.Delegate<Unit> =
 	componentWithChildren(name = null, render = render).unsafeCast<RComponent.WithChildren.Delegate<Unit>>()
 
 
-@RDsl
+/** Creates a named component with no props that accepts children. */
 public inline fun ReactGlobal.componentWithChildren(
 	name: String?,
 	crossinline render: RBuilder.WithHooks.(children: RChildren?) -> Unit,
@@ -97,15 +97,15 @@ public inline fun ReactGlobal.componentWithChildren(
 }
 
 
-@RDsl
+/** Creates a component delegate with typed [Props] that accepts children. */
 @Suppress("unused")
 public inline fun <Props : Any> ReactGlobal.componentWithChildren(
-	crossinline render: RBuilder.WithHooks.(props: Props, children: RChildren?) -> Unit,
+	noinline render: RBuilder.WithHooks.(props: Props, children: RChildren?) -> Unit,
 ): RComponent.WithChildren.Delegate<Props> =
 	componentWithChildren(name = null, render = render).unsafeCast<RComponent.WithChildren.Delegate<Props>>()
 
 
-@RDsl
+/** Creates a named component with typed [Props] that accepts children. */
 @Suppress("unused")
 public inline fun <Props : Any> ReactGlobal.componentWithChildren(
 	name: String?,
@@ -123,65 +123,65 @@ public inline fun <Props : Any> ReactGlobal.componentWithChildren(
 }
 
 
-@RDsl
+/** Creates a React context with a nullable default value of `null`. Wraps `React.createContext()`. */
 @Suppress("unused")
 public inline fun <Value : Any> ReactGlobal.context(): RContext<Value?> =
 	context(defaultValue = null)
 
 
-@RDsl
+/** Creates a React context with the given [defaultValue]. Wraps `React.createContext()`. */
 @Suppress("unused")
 public inline fun <Value> ReactGlobal.context(defaultValue: Value): RContext<Value> =
 	external_createContext(defaultValue)
 
 
-@RDsl
+/** Creates a React element from a builder [content] block. */
 @Suppress("unused")
 public inline fun ReactGlobal.element(content: RBuilder.() -> Unit): RElement? =
 	element(RElementBuilder().apply(content).elements)
 
 
-@RDsl
+/** Creates a React element from a nullable array of child [elements]. Returns `null` if the array is `null`. */
 @Suppress("unused")
 public inline fun ReactGlobal.element(elements: Array<out RElement?>?): RElement? =
 	elements?.let(::element)
 
 
-@RDsl
+/** Creates a React element from an array of child [elements], wrapping in a fragment if needed. */
 @Suppress("unused")
 public inline fun ReactGlobal.element(elements: Array<out RElement?>): RElement? =
 	react_element(elements)
 
 
-@RDsl
+/** Creates a React element from a [text] string. */
 @Suppress("unused")
 public inline fun ReactGlobal.element(text: String): RElement =
 	text.unsafeCast<RElement>()
 
 
-@RDsl
+/** Creates a React element from a nullable [text] string. */
 @Suppress("unused")
 public inline fun ReactGlobal.element(text: String?): RElement? =
 	text.unsafeCast<RElement?>()
 
 
-@RDsl
+/** Creates a React element for a component with no props. */
 public inline fun ReactGlobal.element(component: RComponent<Unit>, key: String? = null): RElement? =
 	element(component = component, props = Unit, key = key)
 
 
-@RDsl
+/** Creates a React element for a component with no props that accepts children. */
 public inline fun ReactGlobal.element(component: RComponent.WithChildren<Unit>, key: String? = null, content: RBuilder.() -> Unit): RElement? =
 	element(component = component, props = Unit, key = key, content = content)
 
 
-@RDsl
+/** Creates a React element for a component with the given [props]. */
 @Suppress("unused")
 public inline fun <Props : Any> ReactGlobal.element(component: RComponent<Props>, props: Props, key: String? = null): RElement? =
 	element(factory = component.asFactory(), props = RComponentProps(props), key = key)
 
 
-@RDsl
+/** Creates a React element for a component with [props] that accepts children. */
 @Suppress("unused")
 public inline fun <Props : Any> ReactGlobal.element(
 	component: RComponent.WithChildren<Props>,
@@ -192,7 +192,7 @@ public inline fun <Props : Any> ReactGlobal.element(
 	element(factory = component.asFactory(), props = RComponentPropsWithChildren(props), key = key, content = content)
 
 
-@RDsl
+/** Creates a React element from an external component class with no custom props. */
 @Suppress("unused")
 public inline fun ReactGlobal.element(
 	factoryClass: KClass<out RElementFactoryClass<in RProps.WithChildren>>,
@@ -202,7 +202,7 @@ public inline fun ReactGlobal.element(
 	element(factory = factoryClass.asFactory(), key = key, ref = ref)
 
 
-@RDsl
+/** Creates a React element from an external component class with children. */
 @Suppress("unused")
 public inline fun ReactGlobal.element(
 	factoryClass: KClass<out RElementFactoryClass<RProps.WithChildren>>,
@@ -213,7 +213,7 @@ public inline fun ReactGlobal.element(
 	element(factory = factoryClass.asFactory(), key = key, ref = ref, content = content)
 
 
-@RDsl
+/** Creates a React element from an external component class with typed attrs. */
 @Suppress("unused")
 public inline fun <Props : RProps> ReactGlobal.element(
 	factoryClass: KClass<out RElementFactoryClass<Props>>,
@@ -224,7 +224,7 @@ public inline fun <Props : RProps> ReactGlobal.element(
 	element(factory = factoryClass.asFactory(), key = key, ref = ref, content = content)
 
 
-@RDsl
+/** Creates a React element from a factory with no custom props. */
 @Suppress("unused")
 public inline fun ReactGlobal.element(
 	factory: RElementFactory<in RProps.WithChildren>,
@@ -241,7 +241,7 @@ public inline fun ReactGlobal.element(
 	)
 
 
-@RDsl
+/** Creates a React element from a factory with children. */
 @Suppress("unused")
 public inline fun ReactGlobal.element(
 	factory: RElementFactory<RProps.WithChildren>,
@@ -259,8 +259,8 @@ public inline fun ReactGlobal.element(
 	)
 
 
+/** Creates a React element from a factory with typed attrs and children. */
 // TODO Builder shouldn't allow adding children when Props is not subtype of RProps.WithChildren
-@RDsl
 @Suppress("unused")
 public inline fun <Props : RProps> ReactGlobal.element(
 	factory: RElementFactory<Props>,
@@ -280,7 +280,7 @@ public inline fun <Props : RProps> ReactGlobal.element(
 }
 
 
-@RDsl
+/** Creates a React element from a factory with explicit [props]. */
 @Suppress("unused")
 public inline fun <Props : RProps> ReactGlobal.element(
 	factory: RElementFactory<Props>,
@@ -299,7 +299,7 @@ public inline fun <Props : RProps> ReactGlobal.element(
 }
 
 
-@RDsl
+/** Creates a React element from a factory with explicit [props] and children. */
 @Suppress("unused")
 public inline fun <Props : RProps.WithChildren> ReactGlobal.element(
 	factory: RElementFactory<Props>,
@@ -327,7 +327,7 @@ public inline fun <Props : RProps.WithChildren> ReactGlobal.element(
  * react.element(tag, className? = …, key? = …, ref? = …, content? = …)
  */
 
-@RDsl
+/** Creates a React element for an HTML/SVG [tag] with no props or children. */
 @Suppress("unused")
 public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
@@ -336,7 +336,7 @@ public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 }
 
 
-@RDsl
+/** Creates a React element for an HTML/SVG [tag] with a [content] builder. */
 @Suppress("unused")
 public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
@@ -346,7 +346,7 @@ public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 }
 
 
-@RDsl
+/** Creates a React element for an HTML/SVG [tag] with a [className]. */
 @Suppress("unused")
 public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
@@ -356,7 +356,7 @@ public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 }
 
 
-@RDsl
+/** Creates a React element for an HTML/SVG [tag] with a [className] and [content] builder. */
 @Suppress("unused")
 public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
@@ -367,7 +367,7 @@ public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 }
 
 
-@RDsl
+/** Creates a React element for an HTML/SVG [tag] with vararg [className], optional [key], [ref], and [content]. */
 @Suppress("unused")
 public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
@@ -380,7 +380,7 @@ public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 }
 
 
-@RDsl
+/** Creates a React element for an HTML/SVG [tag] with a [className] array, optional [key], [ref], and [content]. */
 @Suppress("unused")
 public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 	tag: RTag<Props, RefElement>,
@@ -393,21 +393,21 @@ public inline fun <Props : RTagProps, RefElement : Any> ReactGlobal.element(
 }
 
 
-@RDsl
+/** Lazily loads a component module. Wraps `React.lazy()`. */
 @Suppress("unused")
 public inline fun <Props : RProps> ReactGlobal.lazy(noinline factory: () -> Promise<RElementFactoryModule<Props>>): RElementFactory<Props> =
 	external_lazy(factory)
 
 
-@RDsl
+/** Lazily loads a component with no props from a render function. */
 @Suppress("unused")
 public inline fun ReactGlobal.lazyComponent(crossinline factory: () -> Promise<RBuilder.() -> Unit>): RComponent<Unit> =
 	lazyComponent<Unit> {
-		factory().then { react.component(name = null, render = it) }
+		factory().then { React.component(name = null, render = it) }
 	}
 
 
-@RDsl
+/** Lazily loads a component with typed props. */
 @Suppress("unused")
 public inline fun <Props : Any> ReactGlobal.lazyComponent(crossinline factory: () -> Promise<RComponent<Props>>): RComponent<Props> =
 	lazy {
@@ -417,7 +417,7 @@ public inline fun <Props : Any> ReactGlobal.lazyComponent(crossinline factory: (
 	}.asComponent()
 
 
-@RDsl
+/** Lazily loads a component with typed props that accepts children. */
 @Suppress("unused")
 public inline fun <Props : Any> ReactGlobal.lazyComponentWithChildren(
 	crossinline factory: () -> Promise<RComponent.WithChildren<Props>>,
@@ -429,7 +429,7 @@ public inline fun <Props : Any> ReactGlobal.lazyComponentWithChildren(
 	}.asComponent()
 
 
-@RDsl
+/** Creates a mutable ref initialized to `null`. Wraps `React.createRef()`. */
 @Suppress("unused")
 public inline fun <Value : Any> ReactGlobal.ref(): RMutableRef<Value?> =
 	external_createRef()
@@ -504,7 +504,7 @@ internal /* no-inline */ fun <Props : RTagProps, RefElement : Any> react_element
 	ref: RMutableRef<in RefElement?>?,
 	content: (RBuilder.WithAttrs<Props>.() -> Unit)?,
 ): RElement? =
-	react.element(
+	React.element(
 		factory = tag.asFactory(),
 		key = key,
 		ref = ref

@@ -11,7 +11,7 @@ internal external interface RRoutesProps : RProps.WithChildren {
 }
 
 
-@RDsl
+/** Renders the first matching child route. Wraps React Router's `Routes`. */
 public inline fun RBuilder.Routes(
 	basename: String? = undefined,
 	content: RBuilder.() -> Unit,
